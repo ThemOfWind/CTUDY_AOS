@@ -1,2 +1,1 @@
-# CTUDY_AOS
-CTUDY_Android
+# CTUDY_Android
