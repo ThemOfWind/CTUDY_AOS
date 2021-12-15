@@ -17,13 +17,13 @@
         android:theme="@style/Theme.CTUDY"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".BaseActivity"
+            android:name=".activity.BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".IntroActivity"
+            android:name=".activity.IntroActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

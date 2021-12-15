@@ -1,4 +1,4 @@
-package com.toy.project.ctudy
+package com.toy.project.ctudy.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
