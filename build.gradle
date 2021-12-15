@@ -1,0 +1,25 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    // divided version info
+    ext {
+        android_kotlin_plugin_version = '1.5.31'
+        android_ktx_version = '1.7.0'
+        android_plugin_version = '4.1.2'
+        android_tool_gradle_version = '7.0.4'
+        meterial_version = '1.4.0'
+        appcompat_version = '1.4.0'
+        constraintlayout_version = '2.1.2'
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$android_tool_gradle_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$android_kotlin_plugin_version"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

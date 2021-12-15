@@ -1,0 +1,49 @@
+plugins {
+    id 'kotlin-kapt'
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 30
+
+    defaultConfig {
+        applicationId "com.toy.project.ctudy"
+        minSdk 21
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+        archivesBaseName = "CTUDY_" + versionName + "_" + versionCode
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // DataBinding Enabled
+    buildFeatures {
+        dataBinding = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation "androidx.core:core-ktx:$rootProject.android_ktx_version"
+    implementation "androidx.appcompat:appcompat:$rootProject.appcompat_version"
+    implementation "com.google.android.material:material:$rootProject.meterial_version"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayout_version"
+
+    // DataBinding
+    kapt "com.android.databinding:compiler:$rootProject.android_plugin_version"
+}
