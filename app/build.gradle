@@ -56,4 +56,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+
+    // Koin
+    // Koin main features for Android
+    implementation "io.insert-koin:koin-android:$koin_version"
+    // No more koin-android-viewmodel, koin-android-scope, koin-android-fragment
 }

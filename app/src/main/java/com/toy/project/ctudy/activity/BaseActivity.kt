@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleObserver
 import com.toy.project.ctudy.viewmodel.BaseViewModel
+import org.koin.core.component.KoinComponent
 
 /**
  * BaseActitivity 정의
@@ -14,7 +15,7 @@ import com.toy.project.ctudy.viewmodel.BaseViewModel
  * 참고 : https://jinee0717.tistory.com/33
  */
 abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : AppCompatActivity(),
-    LifecycleObserver {
+    LifecycleObserver, KoinComponent {
 
     lateinit var viewBinding: DataBinding
 

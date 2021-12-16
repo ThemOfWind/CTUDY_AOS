@@ -17,6 +17,9 @@ buildscript {
 
         // Retrofit
         retrofitVersion = '2.9.0'
+
+        // Koin
+        koin_version= "3.1.4"
     }
     repositories {
         google()
