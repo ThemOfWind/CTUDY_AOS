@@ -18,6 +18,9 @@
         android:theme="@style/Theme.CTUDY"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.BaseActivity"
             android:exported="false" />
         <activity

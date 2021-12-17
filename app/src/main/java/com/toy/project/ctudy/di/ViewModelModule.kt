@@ -1,6 +1,7 @@
 package com.toy.project.ctudy.di
 
 import com.toy.project.ctudy.viewmodel.IntroViewModel
+import com.toy.project.ctudy.viewmodel.LoginViewModel
 import com.toy.project.ctudy.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -15,4 +16,6 @@ val ViewModelModule = module {
     viewModel { IntroViewModel() }
 
     viewModel { MainViewModel() }
+
+    viewModel { LoginViewModel() }
 }

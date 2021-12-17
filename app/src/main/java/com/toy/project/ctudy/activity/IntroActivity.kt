@@ -10,7 +10,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 /**
  * Intro Page
  */
-class IntroActivity : BaseActivity<ActivityIntroBinding, BaseViewModel>() {
+class IntroActivity : BaseActivity<ActivityIntroBinding, IntroViewModel>() {
     override val layoutResID: Int = R.layout.activity_intro
     override val viewModel: IntroViewModel by viewModel()
 

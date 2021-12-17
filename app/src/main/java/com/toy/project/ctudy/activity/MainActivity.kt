@@ -10,7 +10,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 /**
  * Main Page
  */
-class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override val layoutResID: Int = R.layout.activity_main
     override val viewModel: MainViewModel by viewModel()
 

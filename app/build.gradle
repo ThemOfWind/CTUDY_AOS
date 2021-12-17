@@ -44,6 +44,9 @@ dependencies {
     implementation "com.google.android.material:material:$rootProject.meterial_version"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayout_version"
 
+    // viewmodel and LiveData
+    implementation "android.arch.lifecycle:extensions:$lifecycleExtentionVersion"
+
     // DataBinding
     kapt "com.android.databinding:compiler:$rootProject.android_plugin_version"
 
