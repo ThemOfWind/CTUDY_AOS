@@ -1,4 +1,4 @@
-package com.toy.project.ctudy.repository
+package com.toy.project.ctudy.repository.pref
 
 /**
  * SharedPref Base Impl

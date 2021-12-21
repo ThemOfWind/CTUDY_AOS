@@ -1,7 +1,6 @@
 package com.toy.project.ctudy.repository.pref
 
 import android.content.SharedPreferences
-import com.toy.project.ctudy.repository.SharedPrefImpl
 
 /**
  * Base SharedPref
