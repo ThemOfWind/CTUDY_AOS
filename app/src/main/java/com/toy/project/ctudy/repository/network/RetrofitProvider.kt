@@ -19,6 +19,10 @@ class ApplicationInterCeptor : Interceptor {
     private val CONTEXT_TYPE = "Content-Type"
     private val ACCEPT_CONTENT_TYPE = "application/json; charset=UTF-8"
 
+    /**
+     * Application -> Okhttp 사이 동작
+     * 기본 Interceptor 구현
+     */
     override fun intercept(chain: Interceptor.Chain): Response {
         val origin = chain.request()
         val request = origin.newBuilder().apply {
