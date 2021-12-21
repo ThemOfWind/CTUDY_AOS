@@ -1,2 +1,3 @@
 ## CTUDY_Android
-##### Base 구조 짜는중 ( MVVM + Koin 적용 )
+##### Base 구조 구현 ( MVVM + Repository + Koin )
+##### layout 구현
