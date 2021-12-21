@@ -3,6 +3,7 @@ package com.toy.project.ctudy
 import android.app.Application
 import com.toy.project.ctudy.di.ViewModelModule
 import com.toy.project.ctudy.di.apiModule
+import com.toy.project.ctudy.di.prefModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -23,7 +24,7 @@ class CtudyApplication : Application() {
             // 해당 안드로이드 context를 사용
             androidContext(this@CtudyApplication)
             // 사용할 모듈 등록
-            modules(ViewModelModule, apiModule)
+            modules(ViewModelModule, apiModule, prefModule)
         }
     }
 }
