@@ -23,6 +23,9 @@ buildscript {
 
         // LiveData
         lifecycleExtentionVersion = '1.1.1'
+
+        // Meterial
+        meterial_version = '1.4.0'
     }
     repositories {
         google()
