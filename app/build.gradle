@@ -46,6 +46,8 @@ dependencies {
 
     // viewmodel and LiveData
     implementation "android.arch.lifecycle:extensions:$lifecycleExtentionVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.viewModel_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.viewModel_version"
 
     // DataBinding
     kapt "com.android.databinding:compiler:$rootProject.android_plugin_version"

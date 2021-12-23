@@ -9,6 +9,8 @@ import org.koin.core.context.startKoin
 
 /**
  * Base Application 생성
+ *
+ * Rxjava 참고 : http://blog.yena.io/studynote/2020/10/11/Android-RxJava(1).html
  */
 class CtudyApplication : Application() {
     override fun onCreate() {

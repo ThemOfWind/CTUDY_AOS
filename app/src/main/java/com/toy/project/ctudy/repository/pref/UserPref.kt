@@ -7,21 +7,39 @@ import android.content.SharedPreferences
  */
 class UserPref(pref: SharedPreferences) : BasePref(pref) {
     private val USER_LOGIN_ID = "login_id"
-    private val USER_LOGIN_TOKEN = "login_token"
+    private val USER_LOGIN_ACCESS_TOKEN = "login_access_token"
+    private val USER_LOGIN_TOKEN_TYPE = "login_token_type"
+    private val USER_LOGIN_REFRESH_TOKEN = "login_refresh_token"
 
-    fun setLoginId(id: String) {
+    fun setLoginId(id: String?) {
         setValue(USER_LOGIN_ID, id)
     }
 
-    fun setLoginToken(token: String) {
-        setValue(USER_LOGIN_TOKEN, token)
+    fun setAccessToken(token: String?) {
+        setValue(USER_LOGIN_ACCESS_TOKEN, token)
+    }
+
+    fun setTokenType(tokenType : String?){
+        setValue(USER_LOGIN_TOKEN_TYPE, tokenType)
+    }
+
+    fun setRefreshToken(refreshToken : String?){
+        setValue(USER_LOGIN_REFRESH_TOKEN, refreshToken)
     }
 
     fun getLoginId(): String? {
         return getValue(USER_LOGIN_ID, "")
     }
 
-    fun getLoginToken(): String? {
-        return getValue(USER_LOGIN_TOKEN, "")
+    fun getAccessToken(): String? {
+        return getValue(USER_LOGIN_ACCESS_TOKEN, "")
+    }
+
+    fun getTokenType(tokenType : String): String? {
+        return getValue(USER_LOGIN_TOKEN_TYPE, "")
+    }
+
+    fun getRefreshToken(refreshToken : String): String? {
+        return getValue(USER_LOGIN_REFRESH_TOKEN, "")
     }
 }

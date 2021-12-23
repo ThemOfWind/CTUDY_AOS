@@ -24,6 +24,9 @@ buildscript {
         // LiveData
         lifecycleExtentionVersion = '1.1.1'
 
+        // ViewModel
+        viewModel_version = '2.4.0'
+
         // Meterial
         meterial_version = '1.4.0'
     }
@@ -36,7 +39,6 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$android_kotlin_plugin_version"
     }
 }
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
