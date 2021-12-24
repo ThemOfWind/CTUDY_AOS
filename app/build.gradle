@@ -36,11 +36,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    compileSdkVersion 31
 }
 
 dependencies {
     implementation "androidx.core:core-ktx:$rootProject.android_ktx_version"
     implementation "androidx.appcompat:appcompat:$rootProject.appcompat_version"
+    implementation "androidx.appcompat:appcompat-resources:$rootProject.appcompat_version"
     implementation "com.google.android.material:material:$rootProject.meterial_version"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayout_version"
 
