@@ -2,6 +2,8 @@ package com.toy.project.ctudy.di
 
 import com.toy.project.ctudy.common.HttpDefine
 import com.toy.project.ctudy.repository.network.ApiService
+import com.toy.project.ctudy.repository.network.LoginManager
+import com.toy.project.ctudy.repository.network.LoginManagerImpl
 import com.toy.project.ctudy.repository.network.RetrofitProvider
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -22,5 +24,9 @@ val apiModule = module {
             addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             addConverterFactory(GsonConverterFactory.create())
         }.build().create(ApiService::class.java)
+    }
+
+    single<LoginManager> {
+        LoginManagerImpl(get(), get())
     }
 }

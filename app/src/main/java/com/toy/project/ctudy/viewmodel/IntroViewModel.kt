@@ -1,6 +1,5 @@
 package com.toy.project.ctudy.viewmodel
 
-import androidx.lifecycle.LiveData
 import com.toy.project.ctudy.common.FromIntroType
 import com.toy.project.ctudy.common.SingleLiveEvent
 import com.toy.project.ctudy.repository.pref.UserPref
