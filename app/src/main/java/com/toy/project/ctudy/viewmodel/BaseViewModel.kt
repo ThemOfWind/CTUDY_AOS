@@ -1,6 +1,7 @@
 package com.toy.project.ctudy.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.toy.project.ctudy.common.SingleLiveEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 

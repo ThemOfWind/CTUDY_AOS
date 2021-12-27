@@ -35,9 +35,7 @@ class LoadingDialog(context: Context) : AlertDialog(context) {
         mBindingView = CommonLoadingBinding.inflate(LayoutInflater.from(mContext),
             null, false)
 
-
         Glide.with(mContext).load(R.drawable.loading_dialog).into(mBindingView.loadingImg)
-
 
         mAlertDialogs.let {
             requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -52,28 +50,5 @@ class LoadingDialog(context: Context) : AlertDialog(context) {
             setCancelable(false)
         }
 
-    }
-
-
-    fun dismissDialog() {
-        mActivity.let {
-            if (!it.isFinishing) {
-                mAlertDialogs.let {
-                    dismiss()
-                }
-            }
-        }
-    }
-
-    fun showDialog() {
-        mActivity.let {
-            if (!it.isFinishing) {
-                mAlertDialogs.let {
-                    if (!it.isShowing) {
-                        show()
-                    }
-                }
-            }
-        }
     }
 }

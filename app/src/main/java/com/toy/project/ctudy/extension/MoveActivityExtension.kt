@@ -11,8 +11,9 @@ import com.toy.project.ctudy.R
  * 참고 : https://thdev.tech/k5otlin/2020/09/29/kotlin_effective_04/ (inline)
  * https://sungjk.github.io/2019/09/07/kotlin-reified.html (inline + reified)
  */
-inline fun <reified T : Activity> Activity.startActivity() {
+inline fun <reified T : Activity> Activity.singleStartActivity() {
     val intent = Intent(this, T::class.java)
     startActivity(intent)
     overridePendingTransition(R.anim.in_right_to_left, R.anim.in_right_to_left)
+    finish()
 }

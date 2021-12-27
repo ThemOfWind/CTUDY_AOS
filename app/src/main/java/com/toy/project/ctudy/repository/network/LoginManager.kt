@@ -8,6 +8,6 @@ import io.reactivex.disposables.Disposable
  * Login 관련 수행 Function 정의
  */
 interface LoginManager {
-    fun doLogin(loginData: LoginData): Disposable
+    fun doLogin(loginData: LoginData): Single<Any>
     fun isLogin(): Boolean
 }

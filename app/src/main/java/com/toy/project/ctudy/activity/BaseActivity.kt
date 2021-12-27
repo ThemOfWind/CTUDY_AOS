@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleObserver
+import com.toy.project.ctudy.view.LoadingDialog
 import com.toy.project.ctudy.viewmodel.BaseViewModel
 import org.koin.core.component.KoinComponent
 
@@ -20,6 +21,7 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
 
     abstract val layoutResID: Int
     abstract val viewModel: R
+    private var loadingDialog: LoadingDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,5 +37,34 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
         viewModel.run {
             clearDisposable()
         }
+    }
+
+    protected fun showLoadingDialog() {
+        if (isFinishing) {
+            return
+        }
+
+        loadingDialog?.let {
+            if (!it.isShowing) {
+                it.show()
+            }
+        } ?: run {
+            // apply 와 유사하다
+            // apply : 새로운 객체를 생성함과 동시에 연속된 작업이 필요할 때 사용
+            // run : 이미 생성된 객체에 연속된 작업이 필요할 때 사용한다.
+            loadingDialog = LoadingDialog(this).run {
+                show()
+                this
+            }
+        }
+    }
+
+    protected fun dismissLoadingDialog() {
+        loadingDialog?.let {
+            if (it.isShowing) {
+                it.dismiss()
+            }
+        }
+        loadingDialog = null
     }
 }

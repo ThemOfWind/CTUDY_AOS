@@ -13,7 +13,7 @@ import org.koin.dsl.module
  * 주입받을 때도 해당하는 ViewModelFactory 객체를 불러온다.
  */
 val ViewModelModule = module {
-    viewModel { IntroViewModel() }
+    viewModel { IntroViewModel(get()) }
 
     viewModel { MainViewModel() }
 
