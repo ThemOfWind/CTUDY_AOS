@@ -26,7 +26,12 @@ class CtudyApplication : Application() {
             // 해당 안드로이드 context를 사용
             androidContext(this@CtudyApplication)
             // 사용할 모듈 등록
-            modules(ViewModelModule, apiModule, prefModule)
+            modules(
+                listOf(
+                apiModule,
+                prefModule,
+                ViewModelModule
+            ))
         }
     }
 }

@@ -21,12 +21,14 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
 
     abstract val layoutResID: Int
     abstract val viewModel: R
+    abstract val viewModelVariable: Int
     private var loadingDialog: LoadingDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DataBindingUtil.setContentView<DataBinding>(this, layoutResID).apply {
             lifecycleOwner = this@BaseActivity
+            setVariable(viewModelVariable, viewModel)
             viewBinding = this
         }
     }

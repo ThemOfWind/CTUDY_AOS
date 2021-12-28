@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
  * Login ViewModel
  */
 class LoginViewModel(
-    val loginManager: LoginManager,
+    private val loginManager: LoginManager,
     private val userPref: UserPref,
 ) : BaseViewModel() {
 
@@ -20,7 +20,11 @@ class LoginViewModel(
     val password = MutableLiveData<String>()
 
     fun requestLogin() {
-        if (userId.value.isNullOrBlank() && password.value.isNullOrBlank()) {
+        // Id, Password DataBinding 안됨...
+        // 일단 임의로 test 데이터로.......
+        userId.value = "test1"
+        password.value = "12345"
+        if (!userId.value.isNullOrBlank() && !password.value.isNullOrBlank()) {
             addDisposable(
                 loginManager.doLogin(
                     LoginData(username = userId.value.toString(),
@@ -28,9 +32,9 @@ class LoginViewModel(
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-
+                        Log.d("성공", "Success")
                     }, {
-
+                        Log.d("싫패", "Fail")
                     }))
         }
     }

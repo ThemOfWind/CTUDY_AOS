@@ -6,6 +6,6 @@ import java.io.Serializable
  * Login Form Data
  */
 data class LoginData(
-    val username: String = "",
-    val password: String = "",
+    val username: String,
+    val password: String,
 ) : Serializable

@@ -1,5 +1,6 @@
 package com.toy.project.ctudy.di
 
+import com.toy.project.ctudy.repository.network.LoginManager
 import com.toy.project.ctudy.viewmodel.IntroViewModel
 import com.toy.project.ctudy.viewmodel.LoginViewModel
 import com.toy.project.ctudy.viewmodel.MainViewModel
@@ -14,8 +15,6 @@ import org.koin.dsl.module
  */
 val ViewModelModule = module {
     viewModel { IntroViewModel(get()) }
-
     viewModel { MainViewModel() }
-
     viewModel { LoginViewModel(get(), get()) }
 }

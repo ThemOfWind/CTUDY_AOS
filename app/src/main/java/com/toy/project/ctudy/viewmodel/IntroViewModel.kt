@@ -19,7 +19,6 @@ class IntroViewModel(
         } else {
             startActivity.postValue(FromIntroType.MOVE_MAIN)
         }
-
         startActivity.call()
     }
 }

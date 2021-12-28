@@ -7,7 +7,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 /**
- *
+ * Login Manager Impl
  */
 class LoginManagerImpl(
     private val apiService: ApiService,

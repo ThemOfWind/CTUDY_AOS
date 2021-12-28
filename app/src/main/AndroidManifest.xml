@@ -19,7 +19,7 @@
             android:name=".activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|fontScale"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.BaseActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|fontScale"
@@ -29,7 +29,6 @@
             android:name=".activity.IntroActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|fontScale"
             android:exported="true"
-            android:launchMode="singleInstance"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
