@@ -79,4 +79,8 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.11.0@aar") {
         transitive = true
     }
+
+    // OkHttp
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
 }

@@ -4,6 +4,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.ResponseBody
+import okhttp3.logging.HttpLoggingInterceptor
 import java.net.URLDecoder
 import java.util.concurrent.TimeUnit
 
@@ -28,16 +29,25 @@ class ApplicationInterCeptor : Interceptor {
         val request = origin.newBuilder().apply {
             header(REQUEST_ACCEPT, ACCEPT_CONTENT_TYPE)
             addHeader(CONTEXT_TYPE, ACCEPT_CONTENT_TYPE)
-            method(origin.method(), origin.body())
+            method(origin.method, origin.body)
         }.build()
 
         val response = chain.proceed(request)
         val builder = response.newBuilder().apply {
-            body(ResponseBody.create(response.body()!!.contentType(),
-                URLDecoder.decode(response.body().toString(), "utf-8")))
+            body(ResponseBody.create(response.body!!.contentType(),
+                URLDecoder.decode(response.body.toString(), "utf-8")))
         }
 
         return builder.build()
+    }
+}
+
+class NetWorkInterceptor : Interceptor {
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val request = chain.request()
+        val response = chain.proceed(request)
+
+        return response
     }
 }
 
@@ -45,11 +55,14 @@ class RetrofitProviderImpl : RetrofitProvider {
     private val DEFAULT_TIMEOUT: Long = 15
 
     override fun createClient() = OkHttpClient.Builder().apply {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
         retryOnConnectionFailure(true)
         writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         callTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         addInterceptor(ApplicationInterCeptor())
+        addNetworkInterceptor(interceptor)
     }.build()
 }

@@ -10,7 +10,6 @@ import retrofit2.http.POST
  * Api 정의
  */
 interface ApiService {
-    @POST("/account/signin")
+    @POST("/api/v1/account/signin/")
     fun login(@Body loginData: LoginData): Single<LoginResponse>
-
 }

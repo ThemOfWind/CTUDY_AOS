@@ -1,9 +1,13 @@
 package com.toy.project.ctudy.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.toy.project.ctudy.common.SingleLiveEvent
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import io.reactivex.internal.observers.ConsumerSingleObserver
+import java.net.SocketTimeoutException
 
 /**
  * Rxjava2 CompositeDisposeable class 사용

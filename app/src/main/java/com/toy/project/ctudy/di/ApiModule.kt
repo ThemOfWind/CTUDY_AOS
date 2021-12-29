@@ -1,5 +1,6 @@
 package com.toy.project.ctudy.di
 
+import com.google.gson.GsonBuilder
 import com.toy.project.ctudy.common.HttpDefine
 import com.toy.project.ctudy.repository.network.*
 import org.koin.dsl.module
@@ -18,12 +19,13 @@ val apiModule = module {
     }
 
     single<ApiService> {
+        var gson = GsonBuilder().setLenient().create()
         val provider: RetrofitProvider = get()
         Retrofit.Builder().apply {
             baseUrl(HttpDefine.CTUDY_DOMAIN)
             client(provider.createClient())
             addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            addConverterFactory(GsonConverterFactory.create())
+            addConverterFactory(GsonConverterFactory.create(gson))
         }.build().create(ApiService::class.java)
     }
 
