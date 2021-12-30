@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.toy.project.ctudy.BR
 import com.toy.project.ctudy.R
 import com.toy.project.ctudy.databinding.ActivityLoginBindingImpl
+import com.toy.project.ctudy.extension.singleStartActivity
 import com.toy.project.ctudy.repository.network.LoginManager
 import com.toy.project.ctudy.viewmodel.LoginViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,8 +20,12 @@ class LoginActivity : BaseActivity<ActivityLoginBindingImpl, LoginViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        with(viewModel){
-
+        with(viewModel) {
+            loginState.observe(this@LoginActivity, {
+                if(it){
+                    singleStartActivity<MainActivity>()
+                }
+            })
         }
     }
 }

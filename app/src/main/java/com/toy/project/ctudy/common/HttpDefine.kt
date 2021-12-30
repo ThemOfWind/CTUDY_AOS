@@ -5,5 +5,6 @@ package com.toy.project.ctudy.common
  */
 object HttpDefine {
     // Base Domain
-    const val CTUDY_DOMAIN = "https://api.ctudy.com/"
+    const val CTUDY_DOMAIN = "https://api.ctudy.com"
+    const val CTUDY_API = "/api/v1/"
 }

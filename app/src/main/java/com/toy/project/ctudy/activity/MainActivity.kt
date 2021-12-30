@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.toy.project.ctudy.BR
 import com.toy.project.ctudy.R
 import com.toy.project.ctudy.databinding.ActivityMainBinding
+import com.toy.project.ctudy.extension.singleStartActivity
 import com.toy.project.ctudy.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -17,6 +18,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        with(viewModel) {
+            loginState.observe(this@MainActivity, {
+                if (it) {
+                    singleStartActivity<LoginActivity>()
+                }
+            })
+        }
     }
 }

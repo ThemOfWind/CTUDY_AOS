@@ -33,12 +33,8 @@ class ApplicationInterCeptor : Interceptor {
         }.build()
 
         val response = chain.proceed(request)
-        val builder = response.newBuilder().apply {
-            body(ResponseBody.create(response.body!!.contentType(),
-                URLDecoder.decode(response.body.toString(), "utf-8")))
-        }
 
-        return builder.build()
+        return response
     }
 }
 

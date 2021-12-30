@@ -10,6 +10,7 @@ class UserPref(pref: SharedPreferences) : BasePref(pref) {
     private val USER_LOGIN_ACCESS_TOKEN = "login_access_token"
     private val USER_LOGIN_TOKEN_TYPE = "login_token_type"
     private val USER_LOGIN_REFRESH_TOKEN = "login_refresh_token"
+    private val USER_AUTO_LOGIN = "login_auto_login"
 
     fun setLoginId(id: String?) {
         setValue(USER_LOGIN_ID, id)
@@ -19,11 +20,11 @@ class UserPref(pref: SharedPreferences) : BasePref(pref) {
         setValue(USER_LOGIN_ACCESS_TOKEN, token)
     }
 
-    fun setTokenType(tokenType : String?){
+    fun setTokenType(tokenType: String?) {
         setValue(USER_LOGIN_TOKEN_TYPE, tokenType)
     }
 
-    fun setRefreshToken(refreshToken : String?){
+    fun setRefreshToken(refreshToken: String?) {
         setValue(USER_LOGIN_REFRESH_TOKEN, refreshToken)
     }
 
@@ -35,11 +36,33 @@ class UserPref(pref: SharedPreferences) : BasePref(pref) {
         return getValue(USER_LOGIN_ACCESS_TOKEN, "")
     }
 
-    fun getTokenType(tokenType : String): String? {
+    fun getTokenType(): String? {
         return getValue(USER_LOGIN_TOKEN_TYPE, "")
     }
 
-    fun getRefreshToken(refreshToken : String): String? {
+    fun getRefreshToken(refreshToken: String): String? {
         return getValue(USER_LOGIN_REFRESH_TOKEN, "")
+    }
+
+    fun setAutoLogin(autoLogin: Boolean) {
+        setValue(USER_AUTO_LOGIN, autoLogin)
+    }
+
+    fun getAutoLogin(): Boolean {
+        return getValue(USER_AUTO_LOGIN, false)
+    }
+
+    fun getAuthorizationToken(): String {
+        if (!getTokenType().isNullOrEmpty() && !getAccessToken().isNullOrEmpty()) {
+            return getTokenType() + " " + getAccessToken()
+        }
+        return ""
+    }
+
+    fun getLoginStatus(): Boolean {
+        if (getAccessToken().isNullOrEmpty()) {
+            return false;
+        }
+        return true
     }
 }

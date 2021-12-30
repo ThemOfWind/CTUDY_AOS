@@ -10,4 +10,5 @@ import io.reactivex.disposables.Disposable
 interface LoginManager {
     fun doLogin(loginData: LoginData): Single<Any>
     fun isLogin(): Boolean
+    fun doLogout(): Single<Any>
 }

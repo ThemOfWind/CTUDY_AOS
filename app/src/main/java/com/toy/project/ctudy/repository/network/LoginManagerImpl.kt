@@ -2,6 +2,7 @@ package com.toy.project.ctudy.repository.network
 
 import android.util.Log
 import com.toy.project.ctudy.model.LoginData
+import com.toy.project.ctudy.model.response.BaseResponse
 import com.toy.project.ctudy.model.response.LoginResponse
 import com.toy.project.ctudy.repository.pref.UserPref
 import io.reactivex.Single
@@ -42,5 +43,26 @@ class LoginManagerImpl(
             return true
         }
         return false
+    }
+
+    override fun doLogout(): Single<Any> {
+        return apiService.logout(userPref.getAuthorizationToken()).map { response ->
+            if (response.result == true) {
+                userPref.setAccessToken("")
+                userPref.setRefreshToken("")
+                userPref.setTokenType("")
+                userPref.setLoginId("")
+
+                return@map response
+            } else {
+                return@map Throwable("Logout Error")
+            }
+        }
+        .flatMap { response ->
+            when (response) {
+                is BaseResponse -> return@flatMap Single.create { it.onSuccess(response) }
+                else -> return@flatMap Single.create { it.onError(Throwable(response.toString())) }
+            }
+        }
     }
 }
