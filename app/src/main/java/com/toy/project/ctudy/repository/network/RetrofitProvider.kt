@@ -51,14 +51,15 @@ class RetrofitProviderImpl : RetrofitProvider {
     private val DEFAULT_TIMEOUT: Long = 15
 
     override fun createClient() = OkHttpClient.Builder().apply {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
+//        // Debug용
+//        val interceptor = HttpLoggingInterceptor()
+//        interceptor.level = HttpLoggingInterceptor.Level.BODY
         retryOnConnectionFailure(true)
         writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         callTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         addInterceptor(ApplicationInterCeptor())
-        addNetworkInterceptor(interceptor)
+        addNetworkInterceptor(NetWorkInterceptor())
     }.build()
 }
