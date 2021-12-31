@@ -22,9 +22,12 @@ open class BaseViewModel : ViewModel() {
         compositeDisposable.add(disposable)
     }
 
-    fun clearDisposable(){
+    fun clearDisposable() {
         compositeDisposable.clear()
     }
+
+    // TODO 진행중
+//    fun <T : Single<T>> T.startLoading(): Single<T> {  }
 
     override fun onCleared() {
         super.onCleared()

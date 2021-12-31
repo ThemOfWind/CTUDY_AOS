@@ -3,9 +3,6 @@ package com.toy.project.ctudy.extension
 import android.app.Activity
 import android.content.Intent
 import com.toy.project.ctudy.R
-import io.reactivex.Single
-import io.reactivex.disposables.Disposable
-import io.reactivex.internal.observers.ConsumerSingleObserver
 
 /**
  * Activity 이동 공통 정의

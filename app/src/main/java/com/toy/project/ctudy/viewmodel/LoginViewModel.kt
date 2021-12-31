@@ -1,14 +1,12 @@
 package com.toy.project.ctudy.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.toy.project.ctudy.common.SingleLiveEvent
 import com.toy.project.ctudy.model.LoginData
 import com.toy.project.ctudy.model.response.LoginResponse
 import com.toy.project.ctudy.repository.network.LoginManager
 import com.toy.project.ctudy.repository.pref.UserPref
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
