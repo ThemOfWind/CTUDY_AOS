@@ -9,6 +9,7 @@ import com.toy.project.ctudy.repository.network.LoginManager
 import com.toy.project.ctudy.repository.pref.UserPref
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlin.math.log
 
 /**
  * Login ViewModel
@@ -34,6 +35,7 @@ class LoginViewModel(
                 loginManager.doLogin(
                     LoginData(username = userId.value!!.trim(),
                         password = password.value!!.trim()))
+                    .startLoading()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({

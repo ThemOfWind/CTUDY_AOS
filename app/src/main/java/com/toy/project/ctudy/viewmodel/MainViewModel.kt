@@ -23,6 +23,7 @@ class MainViewModel(
     fun logOut() {
         addDisposable(
             loginManager.doLogout()
+                .startLoading()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

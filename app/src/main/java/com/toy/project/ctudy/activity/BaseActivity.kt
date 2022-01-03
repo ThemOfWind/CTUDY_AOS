@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleObserver
+import com.toy.project.ctudy.common.LoadingDialogType
 import com.toy.project.ctudy.view.LoadingDialog
 import com.toy.project.ctudy.viewmodel.BaseViewModel
 import org.koin.core.component.KoinComponent
@@ -31,6 +32,14 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
             setVariable(viewModelVariable, viewModel)
             viewBinding = this
         }
+
+        viewModel.startLoadingDialogState.observe(this@BaseActivity, {
+            if (it == LoadingDialogType.SHOW) {
+                showLoadingDialog()
+            } else {
+                dismissLoadingDialog()
+            }
+        })
     }
 
     override fun onDestroy() {

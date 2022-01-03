@@ -8,3 +8,8 @@ enum class FromIntroType {
     MOVE_MAIN,
     MOVE_LOGIN
 }
+
+enum class LoadingDialogType {
+    SHOW,
+    DISMISS
+}
