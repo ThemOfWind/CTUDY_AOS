@@ -26,20 +26,17 @@ class MainViewModel(
                 .startLoading()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
+                .subscribeDone({
                     when (it) {
                         is BaseResponse -> {
                             loginState.value = true
-                            Log.d("성공", "Success")
                         }
                         else -> {
                             loginState.value = false
-                            Log.d("실패", "Fail")
                         }
                     }
                 }, {
                     loginState.value = false
-                    Log.d("실패", "Throwable")
                 })
         )
     }

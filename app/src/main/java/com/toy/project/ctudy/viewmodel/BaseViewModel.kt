@@ -2,13 +2,16 @@ package com.toy.project.ctudy.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.toy.project.ctudy.common.AlertDialogType
 import com.toy.project.ctudy.common.LoadingDialogType
 import com.toy.project.ctudy.common.SingleLiveEvent
+import com.toy.project.ctudy.model.response.LoginResponse
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.internal.observers.ConsumerSingleObserver
 import java.net.SocketTimeoutException
+import java.util.function.Consumer
 
 /**
  * Rxjava2 CompositeDisposeable class 사용
@@ -17,6 +20,7 @@ import java.net.SocketTimeoutException
  * 참고 : https://taehyungk.github.io/posts/android-RxJava2-Disposable//
  */
 open class BaseViewModel : ViewModel() {
+    val commonAlertDialogState = SingleLiveEvent<AlertDialogType>()
     val startLoadingDialogState = SingleLiveEvent<LoadingDialogType>()
 
     private var compositeDisposable = CompositeDisposable()
@@ -47,11 +51,20 @@ open class BaseViewModel : ViewModel() {
     protected fun <A : Any, S : Single<A>> S.startLoading(): Single<A> =
         doOnSubscribe { showDialog() }
 
-    protected fun <A : Any, S : Single<A>> S.subscribeDone(): Disposable {
+    protected fun <A : Any, S : Single<A>> S.subscribeDone(
+        success: (A) -> Unit, fail: () -> Unit,
+    ): Disposable {
         val observer: ConsumerSingleObserver<A> = ConsumerSingleObserver({ response ->
+            when (response) {
+                is LoginResponse -> {
+                    if (!response.result) {
 
+                    }
+                }
+            }
+            success.invoke(response)
         }, {
-
+            fail.invoke()
         })
         dissmissDialog()
         subscribe(observer)
