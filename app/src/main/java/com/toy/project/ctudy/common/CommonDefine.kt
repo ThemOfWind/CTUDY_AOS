@@ -14,7 +14,11 @@ enum class LoadingDialogType {
     DISMISS
 }
 
-enum class AlertDialogType(val msg: String) {
+enum class NetWorkDialogType(val msg: String) {
     NETWORK_ERROR(msg = "통신 중 에러가 발생하였습니다. \n 잠시후 재시도 해주세요"),
-    ETC_ERROR(msg = "에러가 발생하였습니다. \n 잠시후 재시도 해주세요")
+    ETC_ERROR(msg = "에러가 발생하였습니다. \n 잠시후 재시도 해주세요"),
+}
+
+enum class AlertDialogBtnType {
+    ONE,
 }
