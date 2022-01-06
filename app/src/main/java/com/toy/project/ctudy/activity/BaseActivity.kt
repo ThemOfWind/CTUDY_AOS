@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleObserver
-import com.toy.project.ctudy.common.AlertDialogType
+import com.toy.project.ctudy.common.AlertDialogBtnType
 import com.toy.project.ctudy.common.LoadingDialogType
+import com.toy.project.ctudy.repository.etc.CommonDialogListener
+import com.toy.project.ctudy.repository.etc.CommonDialogManager
 import com.toy.project.ctudy.view.CommonDialog
 import com.toy.project.ctudy.view.LoadingDialog
 import com.toy.project.ctudy.viewmodel.BaseViewModel
 import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 /**
  * BaseActitivity 정의
@@ -26,7 +29,7 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
     abstract val viewModel: R
     abstract val viewModelVariable: Int
     private var loadingDialog: LoadingDialog? = null
-    private var alertDialog: CommonDialog? = null
+    private val commonDialogManager: CommonDialogManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +47,8 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
             }
         })
 
-        viewModel.commonAlertDialogState.observe(this@BaseActivity, {
-            alertDialog(it.name, it.msg)
+        viewModel.networkAlertDialogState.observe(this@BaseActivity, {
+            networkAlertDialog(it)
         })
     }
 
@@ -57,17 +60,27 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
         }
     }
 
-    protected fun alertDialog(type: String, msg: String) {
-        // TODO 타입에 따라 one,two버튼 지정?
-        alertDialog = CommonDialog(this).run {
-            if (type.equals(AlertDialogType.ETC_ERROR)
-                || type.equals(AlertDialogType.NETWORK_ERROR)
-            ) {
+    protected fun networkAlertDialog(msg: String) {
+        showCommonDialog(
+            AlertDialogBtnType.ONE,
+            msg).apply {
+            dialogClick(object : CommonDialogListener {
+                override fun onConfirm() {
+                    dismiss()
+                }
 
-            }
-            setContentMsg(msg)
-            this
+                override fun onCancle() {
+                    dismiss()
+                }
+            })
         }
+    }
+
+    protected fun showCommonDialog(
+        type: AlertDialogBtnType,
+        msg: String,
+    ): CommonDialog {
+        return commonDialogManager.showDialog(type, msg)
     }
 
     /**

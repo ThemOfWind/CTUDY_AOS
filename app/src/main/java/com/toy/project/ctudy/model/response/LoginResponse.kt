@@ -21,4 +21,6 @@ data class LoginInfo(
     val expires_in: Int,
     @SerializedName("scope")
     val scope: String,
+    @SerializedName("message")
+    val message: String,
 )

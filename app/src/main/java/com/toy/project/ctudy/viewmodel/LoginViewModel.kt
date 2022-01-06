@@ -29,7 +29,7 @@ class LoginViewModel(
         // Id, Password DataBinding 안됨...
         // 일단 임의로 test 데이터로.......
         userId.value = "test1"
-        password.value = "12345"
+        password.value = "1234"
         if (!userId.value.isNullOrBlank() && !password.value.isNullOrBlank()) {
             addDisposable(
                 loginManager.doLogin(
