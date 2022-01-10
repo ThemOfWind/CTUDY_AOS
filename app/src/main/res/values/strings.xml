@@ -4,12 +4,17 @@
     <!-- 공통 -->
     <string name="confirm_text">확인</string>
     <string name="cancel_text">취소</string>
+    <string name="network_etc_error">에러가 발생하였습니다. \n잠시후 재시도 해주세요</string>
+    <string name="network_error">통신 중 에러가 발생하였습니다. \n 잠시후 재시도 해주세요</string>
 
     <!-- 로그인 -->
-    <string name="login_id_text">아이디</string>
+    <string name="login_id_text">아이디(이메일)</string>
     <string name="login_pw_text">비밀번호</string>
     <string name="login_text">로그인</string>
     <string name="logout_text">로그아웃</string>
     <string name="login_auto_text">자동 로그인</string>
     <string name="login_sign_in_text">회원가입</string>
+    <string name="login_empty_id">아이디를 입력해주세요</string>
+    <string name="login_empty_password">비밀번호를 입력해주세요</string>
+    <string name="login_verification_id">올바른 아이디 형식으로 입력해주세요</string>
 </resources>

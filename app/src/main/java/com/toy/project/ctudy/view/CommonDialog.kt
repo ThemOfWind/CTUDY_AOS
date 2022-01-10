@@ -17,6 +17,8 @@ class CommonDialog(context: Context) : AppCompatDialog(context) {
     private var mDialogConfirmBtn: LinearLayoutCompat? = null
     private var mDialogCancleBtn: LinearLayoutCompat? = null
 
+    private var mDialogClickListener: CommonDialogListener? = null
+
     init {
         setCancelable(false)
         setCanceledOnTouchOutside(false)
@@ -26,6 +28,22 @@ class CommonDialog(context: Context) : AppCompatDialog(context) {
         mDialogContent = findViewById(R.id.common_content_text)
         mDialogConfirmBtn = findViewById(R.id.common_confirm_btn)
         mDialogCancleBtn = findViewById(R.id.common_cancel_btn)
+
+        mDialogConfirmBtn?.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(p0: View?) {
+                mDialogClickListener.let {
+                    it?.onConfirm()
+                }
+            }
+        })
+
+        mDialogCancleBtn?.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(p0: View?) {
+                mDialogClickListener.let {
+                    it?.onCancle()
+                }
+            }
+        })
     }
 
     fun setOneButtonType() {
@@ -36,17 +54,7 @@ class CommonDialog(context: Context) : AppCompatDialog(context) {
         mDialogContent?.text = msg
     }
 
-    fun dialogClick(listener: CommonDialogListener) {
-        mDialogConfirmBtn!!.setOnClickListener {
-            View.OnClickListener {
-                listener.onConfirm()
-            }
-        }
-
-        mDialogCancleBtn!!.setOnClickListener {
-            View.OnClickListener {
-                listener.onCancle()
-            }
-        }
+    fun dialogClick(listener: CommonDialogListener?) {
+        mDialogClickListener = listener
     }
 }

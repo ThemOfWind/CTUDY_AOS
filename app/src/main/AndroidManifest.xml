@@ -16,6 +16,9 @@
         android:theme="@style/Theme.CTUDY"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.SignActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|fontScale"
             android:exported="false"
