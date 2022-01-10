@@ -9,7 +9,7 @@ import com.toy.project.ctudy.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
- * Main Page
+ * 메인 페이지
  */
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override val layoutResID = R.layout.activity_main

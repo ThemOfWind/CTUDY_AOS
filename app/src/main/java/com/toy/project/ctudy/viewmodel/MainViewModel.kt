@@ -1,6 +1,5 @@
 package com.toy.project.ctudy.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.toy.project.ctudy.common.SingleLiveEvent
 import com.toy.project.ctudy.model.response.BaseResponse

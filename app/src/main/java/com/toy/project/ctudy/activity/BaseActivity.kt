@@ -17,7 +17,8 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 /**
- * BaseActitivity 정의
+ * Base Activity 정의
+ *
  * DataBinding, ViewModel, LifecycleObsever ( LiveData )
  * 참고 : https://jinee0717.tistory.com/33
  */
@@ -61,6 +62,9 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
         }
     }
 
+    /**
+     * 네트워크 오류 시 노출될 팝업 정의
+     */
     protected fun networkAlertDialog(msg: String) {
         showCommonDialog(
             AlertDialogBtnType.ONE,
@@ -77,6 +81,10 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
         }
     }
 
+    /**
+     * One Or Two 버튼 공통 팝업 정의
+     * 버튼별 리스너는 리턴되는 CommonDialog 내에서 각각 정의되도록 한다.
+     */
     protected fun showCommonDialog(
         type: AlertDialogBtnType,
         msg: String,

@@ -19,7 +19,6 @@ class CommonDialogImpl(val context: Context) : CommonDialogManager {
             }
 
             setContentMsg(content)
-//            dialogClick(listener)
             show()
         }
     }
