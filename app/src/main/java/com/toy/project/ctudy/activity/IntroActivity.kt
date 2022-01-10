@@ -12,7 +12,7 @@ import com.toy.project.ctudy.viewmodel.IntroViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
- * Intro Page
+ * 인트로 페이지
  */
 class IntroActivity : BaseActivity<ActivityIntroBinding, IntroViewModel>() {
     override val layoutResID = R.layout.activity_intro

@@ -11,7 +11,7 @@ import com.toy.project.ctudy.viewmodel.LoginViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
- * Login Page
+ * 로그인 페이지
  */
 class LoginActivity : BaseActivity<ActivityLoginBindingImpl, LoginViewModel>() {
     override val layoutResID = R.layout.activity_login

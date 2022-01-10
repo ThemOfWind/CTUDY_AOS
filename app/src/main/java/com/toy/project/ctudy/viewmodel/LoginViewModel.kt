@@ -27,9 +27,13 @@ class LoginViewModel(
     val loginEditType = SingleLiveEvent<LoginEditErrorType>()
 
     init {
+        // test
         userId.value = "yh@naver.com"
     }
 
+    /**
+     * 로그인
+     */
     fun requestLogin() {
         // Id, Password DataBinding 안됨...
         // 일단 임의로 test 데이터로.......
@@ -56,18 +60,21 @@ class LoginViewModel(
                             loginState.value = false
                         })
                 )
-            }else{
+            } else {
                 loginEditType.postValue(LoginEditErrorType.VARIFICATION_ID)
             }
-        }else{
-            if(userId.value.isNullOrBlank()){
+        } else {
+            if (userId.value.isNullOrBlank()) {
                 loginEditType.postValue(LoginEditErrorType.EMPTY_ID)
-            }else if(password.value.isNullOrBlank()){
+            } else if (password.value.isNullOrBlank()) {
                 loginEditType.postValue(LoginEditErrorType.EMPTY_PASSWORD)
             }
         }
     }
 
+    /**
+     * 이메일 형식 검증
+     */
     fun varifiacateLoginId(id: String): Boolean {
         val emailReg = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
         val pattern = Pattern.compile(emailReg)
@@ -77,6 +84,9 @@ class LoginViewModel(
         return false
     }
 
+    /**
+     * 자동 로그인 체크 시 세팅될 정보
+     */
     fun setAutoLoginFlag() {
         if (checkAutoLogin.value == true) {
             checkAutoLogin.value = false
