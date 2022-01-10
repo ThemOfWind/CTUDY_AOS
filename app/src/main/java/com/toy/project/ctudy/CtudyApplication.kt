@@ -1,6 +1,7 @@
 package com.toy.project.ctudy
 
 import android.app.Application
+import android.content.Context
 import com.toy.project.ctudy.di.ViewModelModule
 import com.toy.project.ctudy.di.apiModule
 import com.toy.project.ctudy.di.dialogModule
@@ -14,8 +15,12 @@ import org.koin.core.context.startKoin
  * Rxjava 참고 : http://blog.yena.io/studynote/2020/10/11/Android-RxJava(1).html
  */
 class CtudyApplication : Application() {
+    var mContext : Context? = null
+
     override fun onCreate() {
         super.onCreate()
+
+        mContext = applicationContext
 
         /**
          * Koin을 통한 의존성 주입
@@ -35,5 +40,9 @@ class CtudyApplication : Application() {
                     dialogModule
                 ))
         }
+    }
+
+    override fun getApplicationContext(): Context {
+        return super.getApplicationContext()
     }
 }

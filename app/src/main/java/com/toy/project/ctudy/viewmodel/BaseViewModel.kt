@@ -17,7 +17,7 @@ import io.reactivex.internal.observers.ConsumerSingleObserver
  * 참고 : https://taehyungk.github.io/posts/android-RxJava2-Disposable//
  */
 open class BaseViewModel : ViewModel() {
-    val networkAlertDialogState = SingleLiveEvent<String>()
+    val networkAlertDialogState = SingleLiveEvent<Int>()
     val startLoadingDialogState = SingleLiveEvent<LoadingDialogType>()
 
     private var compositeDisposable = CompositeDisposable()
@@ -55,15 +55,16 @@ open class BaseViewModel : ViewModel() {
             when (response) {
                 is LoginResponse -> {
                     if (!response.result) {
-                        networkAlertDialogState.postValue(response.response.message)
-                    } else {
+                        // response Fail
                         networkAlertDialogState.postValue(NetWorkDialogType.ETC_ERROR.msg)
                     }
                 }
             }
+            dissmissDialog()
             success.invoke(response)
         }, {
             networkAlertDialogState.postValue(NetWorkDialogType.ETC_ERROR.msg)
+            dissmissDialog()
             fail.invoke()
         })
         dissmissDialog()

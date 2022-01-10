@@ -1,5 +1,9 @@
 package com.toy.project.ctudy.common
 
+import androidx.annotation.StringRes
+import com.toy.project.ctudy.CtudyApplication
+import com.toy.project.ctudy.R
+
 /**
  * 각 Type 별 Const 정의 Enum Class
  * Enum Class ( 상수를 나열할 수 있는 열거형 클래스 )
@@ -14,11 +18,17 @@ enum class LoadingDialogType {
     DISMISS
 }
 
-enum class NetWorkDialogType(val msg: String) {
-    NETWORK_ERROR(msg = "통신 중 에러가 발생하였습니다. \n 잠시후 재시도 해주세요"),
-    ETC_ERROR(msg = "에러가 발생하였습니다. \n 잠시후 재시도 해주세요"),
+enum class NetWorkDialogType(@StringRes val msg: Int) {
+    NETWORK_ERROR(msg = R.string.network_error),
+    ETC_ERROR(msg = R.string.network_etc_error),
 }
 
 enum class AlertDialogBtnType {
-    ONE,
+    ONE
+}
+
+enum class LoginEditErrorType(@StringRes val msg: Int) {
+    EMPTY_ID(msg = R.string.login_empty_id),
+    EMPTY_PASSWORD(msg = R.string.login_empty_password),
+    VARIFICATION_ID(msg = R.string.login_verification_id)
 }

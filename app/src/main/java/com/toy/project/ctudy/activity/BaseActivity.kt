@@ -7,6 +7,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleObserver
 import com.toy.project.ctudy.common.AlertDialogBtnType
 import com.toy.project.ctudy.common.LoadingDialogType
+import com.toy.project.ctudy.common.LoginEditErrorType
 import com.toy.project.ctudy.repository.etc.CommonDialogListener
 import com.toy.project.ctudy.repository.etc.CommonDialogManager
 import com.toy.project.ctudy.view.CommonDialog
@@ -48,7 +49,7 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
         })
 
         viewModel.networkAlertDialogState.observe(this@BaseActivity, {
-            networkAlertDialog(it)
+            networkAlertDialog(this@BaseActivity.resources.getString(it))
         })
     }
 
@@ -63,7 +64,7 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
     protected fun networkAlertDialog(msg: String) {
         showCommonDialog(
             AlertDialogBtnType.ONE,
-            msg).apply {
+            msg).run {
             dialogClick(object : CommonDialogListener {
                 override fun onConfirm() {
                     dismiss()
@@ -80,7 +81,15 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
         type: AlertDialogBtnType,
         msg: String,
     ): CommonDialog {
-        return commonDialogManager.showDialog(type, msg)
+        return CommonDialog(
+            context = this
+        ).apply {
+            if (type == AlertDialogBtnType.ONE) {
+                setOneButtonType()
+            }
+            setContentMsg(msg)
+            show()
+        }
     }
 
     /**

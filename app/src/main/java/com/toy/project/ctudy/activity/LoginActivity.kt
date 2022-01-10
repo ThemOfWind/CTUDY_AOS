@@ -3,9 +3,10 @@ package com.toy.project.ctudy.activity
 import android.os.Bundle
 import com.toy.project.ctudy.BR
 import com.toy.project.ctudy.R
+import com.toy.project.ctudy.common.AlertDialogBtnType
 import com.toy.project.ctudy.databinding.ActivityLoginBindingImpl
 import com.toy.project.ctudy.extension.singleStartActivity
-import com.toy.project.ctudy.repository.network.LoginManager
+import com.toy.project.ctudy.repository.etc.CommonDialogListener
 import com.toy.project.ctudy.viewmodel.LoginViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,8 +23,23 @@ class LoginActivity : BaseActivity<ActivityLoginBindingImpl, LoginViewModel>() {
 
         with(viewModel) {
             loginState.observe(this@LoginActivity, {
-                if(it){
+                if (it) {
                     singleStartActivity<MainActivity>()
+                }
+            })
+
+            loginEditType.observe(this@LoginActivity, {
+                showCommonDialog(AlertDialogBtnType.ONE,
+                    this@LoginActivity.resources.getString(it.msg)).let {
+                    it.dialogClick(object : CommonDialogListener {
+                        override fun onConfirm() {
+                            it.dismiss()
+                        }
+
+                        override fun onCancle() {
+                            it.dismiss()
+                        }
+                    })
                 }
             })
         }
