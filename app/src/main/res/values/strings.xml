@@ -10,6 +10,7 @@
     <!-- 로그인 -->
     <string name="login_id_text">아이디(이메일)</string>
     <string name="login_pw_text">비밀번호</string>
+    <string name="login_pw_confirm_text">비밀번호 확인</string>
     <string name="login_text">로그인</string>
     <string name="logout_text">로그아웃</string>
     <string name="login_auto_text">자동 로그인</string>
@@ -17,4 +18,10 @@
     <string name="login_empty_id">아이디를 입력해주세요</string>
     <string name="login_empty_password">비밀번호를 입력해주세요</string>
     <string name="login_verification_id">올바른 아이디 형식으로 입력해주세요</string>
+
+    <!-- 회원가입 -->
+    <string name="sign_in_text">회원가입</string>
+    <string name="sign_in_name">이름</string>
+    <string name="sign_in_btn_text">가입하기</string>
+    <string name="sign_in_duple_text">중복확인</string>
 </resources>
