@@ -1,11 +1,14 @@
 package com.toy.project.ctudy.activity
 
 import android.os.Bundle
+import android.view.View
 import com.toy.project.ctudy.BR
 import com.toy.project.ctudy.R
 import com.toy.project.ctudy.common.AlertDialogBtnType
+import com.toy.project.ctudy.databinding.ActivityLoginBinding
 import com.toy.project.ctudy.databinding.ActivityLoginBindingImpl
 import com.toy.project.ctudy.extension.singleStartActivity
+import com.toy.project.ctudy.extension.startMoveActivity
 import com.toy.project.ctudy.repository.etc.CommonDialogListener
 import com.toy.project.ctudy.viewmodel.LoginViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -13,7 +16,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 /**
  * 로그인 페이지
  */
-class LoginActivity : BaseActivity<ActivityLoginBindingImpl, LoginViewModel>() {
+class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(),
+    View.OnClickListener {
     override val layoutResID = R.layout.activity_login
     override val viewModel: LoginViewModel by viewModel()
     override val viewModelVariable = BR.viewModel
@@ -42,6 +46,13 @@ class LoginActivity : BaseActivity<ActivityLoginBindingImpl, LoginViewModel>() {
                     })
                 }
             })
+        }
+        viewBinding.loginSignIn.setOnClickListener(this)
+    }
+
+    override fun onClick(view: View?) {
+        when (view) {
+            viewBinding.loginSignIn -> startMoveActivity<SignActivity>()
         }
     }
 }

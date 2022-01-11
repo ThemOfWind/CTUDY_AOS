@@ -17,3 +17,9 @@ inline fun <reified T : Activity> Activity.singleStartActivity() {
     overridePendingTransition(R.anim.in_right_to_left, R.anim.in_right_to_left)
     finish()
 }
+
+inline fun <reified T : Activity> Activity.startMoveActivity() {
+    val intent = Intent(this, T::class.java)
+    startActivity(intent)
+    overridePendingTransition(R.anim.in_right_to_left, R.anim.in_right_to_left)
+}

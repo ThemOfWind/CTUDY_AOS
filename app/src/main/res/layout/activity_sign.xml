@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activity.SignActivity">
@@ -15,5 +15,183 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/edit_id_whole_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_size_30"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_view">
+
+
+            <!-- 아이디 START -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/id_edit_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/sign_edit_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:text="@string/login_id_text"
+                    android:textColorHint="@color/basic_hint_text_color"
+                    android:textSize="@dimen/text_size_14" />
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/sign_duple_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:background="@drawable/duple_box_layout">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_size_10"
+                        android:layout_marginTop="@dimen/dp_size_10"
+                        android:layout_marginRight="@dimen/dp_size_10"
+                        android:layout_marginBottom="@dimen/dp_size_10"
+                        android:text="@string/sign_in_duple_text"
+                        android:textColor="@color/white" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:id="@+id/edit_id_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_size_2"
+                android:layout_marginTop="@dimen/dp_size_5"
+                android:background="@color/basic_line_color"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/id_edit_layout" />
+            <!-- 아이디 END -->
+
+            <!-- 비밀번호 START -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/password_edit_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_size_20"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_id_line">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/sign_edit_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_pw_text"
+                    android:textColorHint="@color/basic_hint_text_color" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:id="@+id/edit_password_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_size_2"
+                android:layout_marginTop="@dimen/dp_size_10"
+                android:background="@color/basic_line_color"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/password_edit_layout" />
+            <!-- 비밀번호 END -->
+
+            <!-- 비밀번호 확인 START -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/password_confirm_edit_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_size_20"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_password_line">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/sign_edit_confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_pw_confirm_text"
+                    android:textColorHint="@color/basic_hint_text_color" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:id="@+id/password_confirm_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_size_2"
+                android:layout_marginTop="@dimen/dp_size_10"
+                android:background="@color/basic_line_color"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/password_confirm_edit_layout" />
+            <!-- 비밀번호 확인 END -->
+
+            <!-- 이름 START -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/name_edit_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_size_20"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/password_confirm_line">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/name_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in_name"
+                    android:textColorHint="@color/basic_hint_text_color" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_size_2"
+                android:layout_marginTop="@dimen/dp_size_10"
+                android:background="@color/basic_line_color"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_edit_layout" />
+            <!-- 이름 END -->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_bg_color"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_size_15"
+                android:layout_marginBottom="@dimen/dp_size_15"
+                android:text="@string/sign_in_btn_text"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
