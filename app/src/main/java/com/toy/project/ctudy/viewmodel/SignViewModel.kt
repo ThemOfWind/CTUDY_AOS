@@ -41,9 +41,9 @@ class SignViewModel(val apiService: ApiService) : BaseViewModel() {
             completeSignOut.postValue(SignUpResponseType.EMPTY_NAME)
         } else {
             apiService.signUp(
-                SignUpData(username = _username.toString(),
-                    password = _password.toString(),
-                    name = _name.toString()))
+                SignUpData(username = _username.value.toString(),
+                    password = _password.value.toString(),
+                    name = _name.value.toString()))
                 .startLoading()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
