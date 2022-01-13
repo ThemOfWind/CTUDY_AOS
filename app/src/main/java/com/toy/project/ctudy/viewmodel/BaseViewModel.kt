@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.toy.project.ctudy.common.LoadingDialogType
 import com.toy.project.ctudy.common.NetWorkDialogType
 import com.toy.project.ctudy.common.SingleLiveEvent
+import com.toy.project.ctudy.model.response.BaseResponse
 import com.toy.project.ctudy.model.response.LoginResponse
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
@@ -53,7 +54,7 @@ open class BaseViewModel : ViewModel() {
     ): Disposable {
         val observer: ConsumerSingleObserver<A> = ConsumerSingleObserver({ response ->
             when (response) {
-                is LoginResponse -> {
+                is BaseResponse -> {
                     if (!response.result) {
                         // response Fail
                         networkAlertDialogState.postValue(NetWorkDialogType.ETC_ERROR.msg)

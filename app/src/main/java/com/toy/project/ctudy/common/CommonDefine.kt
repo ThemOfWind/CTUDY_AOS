@@ -32,3 +32,13 @@ enum class LoginEditErrorType(@StringRes val msg: Int) {
     EMPTY_PASSWORD(msg = R.string.login_empty_password),
     VARIFICATION_ID(msg = R.string.login_verification_id)
 }
+
+enum class SignUpResponseType() {
+    EMPTY_ID,
+    EMPTY_PASSWORD,
+    EMPTY_NAME,
+    CONFIRM_ID,
+    CONFIRM_PASSWORD,
+    DUPLE_ID,
+    DO_SIGNUP
+}

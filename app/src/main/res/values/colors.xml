@@ -7,4 +7,6 @@
     <color name="white_color">#1E90FF</color>
     <color name="basic_line_color">#F6F6F6F6</color>
     <color name="basic_hint_text_color">#EEEEEE</color>
+    <color name="basic_hint_text_color2">#CCCCCC</color>
+    <color name="basic_red_color">#FF3300</color>
 </resources>

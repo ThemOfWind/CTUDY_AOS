@@ -2,6 +2,13 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.toy.project.ctudy.viewmodel.SignViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:onClick="@{()->viewModel.doCheckDupleId()}"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -42,8 +50,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:text="@string/login_id_text"
-                    android:textColorHint="@color/basic_hint_text_color"
+                    android:hint="@string/login_id_text"
+                    android:text="@={viewModel._username}"
+                    android:textColorHint="@color/basic_hint_text_color2"
                     android:textSize="@dimen/text_size_14" />
 
 
@@ -62,7 +71,8 @@
                         android:layout_marginRight="@dimen/dp_size_10"
                         android:layout_marginBottom="@dimen/dp_size_10"
                         android:text="@string/sign_in_duple_text"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_13" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -70,12 +80,47 @@
             <View
                 android:id="@+id/edit_id_line"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_size_2"
+                android:layout_height="@dimen/dp_size_1"
                 android:layout_marginTop="@dimen/dp_size_5"
                 android:background="@color/basic_line_color"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/id_edit_layout" />
+
+            <RelativeLayout
+                android:id="@+id/edit_id_error_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_id_line">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/error_empty_id_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_empty_id"
+                    android:textColor="@color/basic_red_color"
+                    android:textSize="@dimen/text_size_11"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/error_verificate_id_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_verification_id"
+                    android:textColor="@color/basic_red_color"
+                    android:textSize="@dimen/text_size_11"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/error_duple_confirm_id_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in_duple_confirm_text"
+                    android:textColor="@color/basic_red_color"
+                    android:textSize="@dimen/text_size_11"
+                    android:visibility="gone" />
+            </RelativeLayout>
             <!-- 아이디 END -->
 
             <!-- 비밀번호 START -->
@@ -88,26 +133,48 @@
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_id_line">
+                app:layout_constraintTop_toBottomOf="@+id/edit_id_error_layout">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/sign_edit_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/login_pw_text"
-                    android:textColorHint="@color/basic_hint_text_color" />
+                    android:background="@null"
+                    android:hint="@string/login_pw_text"
+                    android:inputType="textPassword"
+                    android:text="@={viewModel._password}"
+                    android:textColorHint="@color/basic_hint_text_color2"
+                    android:textSize="@dimen/text_size_14" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
                 android:id="@+id/edit_password_line"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_size_2"
+                android:layout_height="@dimen/dp_size_1"
                 android:layout_marginTop="@dimen/dp_size_10"
                 android:background="@color/basic_line_color"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password_edit_layout" />
+
+            <RelativeLayout
+                android:id="@+id/edit_password_error_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_password_line">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/error_empty_password_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_empty_password"
+                    android:textColor="@color/basic_red_color"
+                    android:textSize="@dimen/text_size_11"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
             <!-- 비밀번호 END -->
 
             <!-- 비밀번호 확인 START -->
@@ -120,26 +187,48 @@
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_password_line">
+                app:layout_constraintTop_toBottomOf="@+id/edit_password_error_layout">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/sign_edit_confirm_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/login_pw_confirm_text"
-                    android:textColorHint="@color/basic_hint_text_color" />
+                    android:background="@null"
+                    android:hint="@string/login_pw_confirm_text"
+                    android:inputType="textPassword"
+                    android:text="@={viewModel._passwordConfirm}"
+                    android:textColorHint="@color/basic_hint_text_color2"
+                    android:textSize="@dimen/text_size_14" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
                 android:id="@+id/password_confirm_line"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_size_2"
+                android:layout_height="@dimen/dp_size_1"
                 android:layout_marginTop="@dimen/dp_size_10"
                 android:background="@color/basic_line_color"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password_confirm_edit_layout" />
+
+            <RelativeLayout
+                android:id="@+id/edit_password_confirm_error_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/password_confirm_line">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/error_confirm_password_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in_confirm_password"
+                    android:textColor="@color/basic_red_color"
+                    android:textSize="@dimen/text_size_11"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
             <!-- 비밀번호 확인 END -->
 
             <!-- 이름 START -->
@@ -152,26 +241,49 @@
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/password_confirm_line">
+                app:layout_constraintTop_toBottomOf="@+id/edit_password_confirm_error_layout">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/name_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/sign_in_name"
-                    android:textColorHint="@color/basic_hint_text_color" />
+                    android:background="@null"
+                    android:hint="@string/sign_in_name"
+                    android:text="@={viewModel._name}"
+                    android:textColorHint="@color/basic_hint_text_color2"
+                    android:textSize="@dimen/text_size_14" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
+                android:id="@+id/name_line"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_size_2"
+                android:layout_height="@dimen/dp_size_1"
                 android:layout_marginTop="@dimen/dp_size_10"
                 android:background="@color/basic_line_color"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/name_edit_layout" />
             <!-- 이름 END -->
+
+
+            <RelativeLayout
+                android:id="@+id/edit_name_error_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_line">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/error_empty_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in_confirm_name"
+                    android:textColor="@color/basic_red_color"
+                    android:textSize="@dimen/text_size_11"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -180,6 +292,7 @@
             android:layout_height="wrap_content"
             android:background="@color/main_bg_color"
             android:gravity="center"
+            android:onClick="@{()->viewModel.doSignOut()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">

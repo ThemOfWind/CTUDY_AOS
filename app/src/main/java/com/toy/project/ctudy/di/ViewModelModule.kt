@@ -18,5 +18,5 @@ val ViewModelModule = module {
     viewModel { IntroViewModel(get()) }
     viewModel { MainViewModel(get(), get()) }
     viewModel { LoginViewModel(get(), get()) }
-    viewModel { SignViewModel() }
+    viewModel { SignViewModel(get()) }
 }

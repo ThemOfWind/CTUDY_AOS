@@ -3,6 +3,7 @@ package com.toy.project.ctudy.viewmodel
 import androidx.lifecycle.MutableLiveData
 import com.toy.project.ctudy.common.LoginEditErrorType
 import com.toy.project.ctudy.common.SingleLiveEvent
+import com.toy.project.ctudy.extension.varifiacateLoginId
 import com.toy.project.ctudy.model.LoginData
 import com.toy.project.ctudy.model.response.LoginResponse
 import com.toy.project.ctudy.repository.network.LoginManager
@@ -70,18 +71,6 @@ class LoginViewModel(
                 loginEditType.postValue(LoginEditErrorType.EMPTY_PASSWORD)
             }
         }
-    }
-
-    /**
-     * 이메일 형식 검증
-     */
-    fun varifiacateLoginId(id: String): Boolean {
-        val emailReg = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
-        val pattern = Pattern.compile(emailReg)
-        val matcher = pattern.matcher(id)
-        if (matcher.matches())
-            return true
-        return false
     }
 
     /**

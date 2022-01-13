@@ -2,13 +2,13 @@ package com.toy.project.ctudy.repository.network
 
 import com.toy.project.ctudy.common.HttpDefine
 import com.toy.project.ctudy.model.LoginData
+import com.toy.project.ctudy.model.SignUpData
 import com.toy.project.ctudy.model.response.BaseResponse
+import com.toy.project.ctudy.model.response.DupleChkResponse
 import com.toy.project.ctudy.model.response.LoginResponse
+import com.toy.project.ctudy.model.response.SignUpResponse
 import io.reactivex.Single
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * Api 정의
@@ -19,4 +19,10 @@ interface ApiService {
 
     @GET(HttpDefine.CTUDY_API + "/account/logout/")
     fun logout(@Header("Authorization") authorization: String): Single<BaseResponse>
+
+    @POST(HttpDefine.CTUDY_API + "/account/signup/")
+    fun signUp(@Body signUpData: SignUpData): Single<SignUpResponse>
+
+    @GET(HttpDefine.CTUDY_API + "/account/signup/")
+    fun dupleIdConfirm(@Query("username") username: String): Single<DupleChkResponse>
 }

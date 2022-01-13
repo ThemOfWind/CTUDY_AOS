@@ -24,4 +24,10 @@
     <string name="sign_in_name">이름</string>
     <string name="sign_in_btn_text">가입하기</string>
     <string name="sign_in_duple_text">중복확인</string>
+    <string name="sign_in_duple_confirm_text">아이디 중복확인이 필요합니다</string>
+    <string name="sign_in_confirm_password">비밀번호를 확인해주세요</string>
+    <string name="sign_in_confirm_name">이름을 입력해주세요</string>
+    <string name="sign_in_success">회원가입이 완료되었습니다.</string>
+    <string name="sign_in_duple_confirm_success">사용 가능한 아이디입니다.</string>
+    <string name="sign_in_duple_confirm_fail">중복된 아이디가 존재합니다.</string>
 </resources>
