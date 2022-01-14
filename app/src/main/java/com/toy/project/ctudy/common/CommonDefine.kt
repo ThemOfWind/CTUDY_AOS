@@ -40,5 +40,6 @@ enum class SignUpResponseType() {
     CONFIRM_ID,
     CONFIRM_PASSWORD,
     DUPLE_ID,
-    DO_SIGNUP
+    DO_SIGNUP,
+    FAIL_SIGNUP
 }

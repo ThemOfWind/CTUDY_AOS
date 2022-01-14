@@ -27,24 +27,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(),
 
         with(viewModel) {
             loginState.observe(this@LoginActivity, {
-                if (it) {
+                if (it)
                     singleStartActivity<MainActivity>()
-                }
+                showCommonDialog(AlertDialogBtnType.ONE,
+                    this@LoginActivity.resources.getString(R.string.login_error_text))
             })
 
             loginEditType.observe(this@LoginActivity, {
                 showCommonDialog(AlertDialogBtnType.ONE,
-                    this@LoginActivity.resources.getString(it.msg)).let {
-                    it.dialogClick(object : CommonDialogListener {
-                        override fun onConfirm() {
-                            it.dismiss()
-                        }
-
-                        override fun onCancle() {
-                            it.dismiss()
-                        }
-                    })
-                }
+                    this@LoginActivity.resources.getString(it.msg))
             })
         }
         viewBinding.loginSignIn.setOnClickListener(this)

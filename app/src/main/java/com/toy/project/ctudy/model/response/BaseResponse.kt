@@ -8,4 +8,7 @@ import com.google.gson.annotations.SerializedName
 open class BaseResponse {
     @SerializedName("result")
     val result: Boolean = false
+
+    @SerializedName("error")
+    val error: String = ""
 }

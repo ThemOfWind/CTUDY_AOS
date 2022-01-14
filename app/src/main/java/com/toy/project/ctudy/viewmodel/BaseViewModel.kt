@@ -1,15 +1,18 @@
 package com.toy.project.ctudy.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.toy.project.ctudy.common.LoadingDialogType
 import com.toy.project.ctudy.common.NetWorkDialogType
 import com.toy.project.ctudy.common.SingleLiveEvent
 import com.toy.project.ctudy.model.response.BaseResponse
-import com.toy.project.ctudy.model.response.LoginResponse
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.internal.observers.ConsumerSingleObserver
+import org.json.JSONObject
+import retrofit2.HttpException
+
 
 /**
  * Rxjava2 CompositeDisposeable class 사용
@@ -50,7 +53,7 @@ open class BaseViewModel : ViewModel() {
         doOnSubscribe { showDialog() }
 
     protected fun <A : Any, S : Single<A>> S.subscribeDone(
-        success: (A) -> Unit, fail: () -> Unit,
+        success: (A) -> Unit, fail: (String) -> Unit,
     ): Disposable {
         val observer: ConsumerSingleObserver<A> = ConsumerSingleObserver({ response ->
             when (response) {
@@ -64,13 +67,21 @@ open class BaseViewModel : ViewModel() {
             dissmissDialog()
             success.invoke(response)
         }, {
-            networkAlertDialogState.postValue(NetWorkDialogType.ETC_ERROR.msg)
+            val error = it as HttpException
+            val errorBody = error.response()?.errorBody()?.string()
+            val message = responseErrorBody(errorBody.toString())
             dissmissDialog()
-            fail.invoke()
+            fail.invoke(message)
         })
         dissmissDialog()
         subscribe(observer)
         return observer
+    }
+
+    fun responseErrorBody(error: String): String {
+        val jsonObject = JSONObject(error)
+        val errorBody = jsonObject.getJSONObject("error")
+        return errorBody.getString("message")
     }
 
     fun showDialog() {

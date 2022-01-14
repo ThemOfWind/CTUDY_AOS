@@ -20,7 +20,6 @@ class SignActivity : BaseActivity<ActivitySignBinding, SignViewModel>() {
     override val layoutResID: Int = R.layout.activity_sign
     override val viewModel: SignViewModel by viewModel()
     override val viewModelVariable: Int = BR.viewModel
-
     private var mContext: Context? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +42,7 @@ class SignActivity : BaseActivity<ActivitySignBinding, SignViewModel>() {
                     viewBinding.errorConfirmPasswordText.isVisible = true
                 } else if (it == SignUpResponseType.DUPLE_ID) {
                     viewBinding.errorDupleConfirmIdText.isVisible = true
-                } else {
+                } else if (it == SignUpResponseType.DO_SIGNUP) {
                     showCommonDialog(AlertDialogBtnType.ONE,
                         this@SignActivity.resources.getString(R.string.sign_in_success))
                         .let {
@@ -59,6 +58,9 @@ class SignActivity : BaseActivity<ActivitySignBinding, SignViewModel>() {
                             })
                         }
 
+                } else {
+                    showCommonDialog(AlertDialogBtnType.ONE,
+                        this@SignActivity.resources.getString(R.string.sign_in_fail))
                 }
             })
 
@@ -68,34 +70,10 @@ class SignActivity : BaseActivity<ActivitySignBinding, SignViewModel>() {
                     // 사용가능한 아이디
                     showCommonDialog(AlertDialogBtnType.ONE,
                         this@SignActivity.resources.getString(R.string.sign_in_duple_confirm_success))
-                        .let {
-                            it.dialogClick(object : CommonDialogListener {
-                                override fun onConfirm() {
-                                    it.dismiss()
-                                }
-
-                                override fun onCancle() {
-                                    it.dismiss()
-                                }
-
-                            })
-                        }
-                }else{
+                } else {
                     // 중복된 아이디 존재
                     showCommonDialog(AlertDialogBtnType.ONE,
                         this@SignActivity.resources.getString(R.string.sign_in_duple_confirm_fail))
-                        .let {
-                            it.dialogClick(object : CommonDialogListener {
-                                override fun onConfirm() {
-                                    it.dismiss()
-                                }
-
-                                override fun onCancle() {
-                                    it.dismiss()
-                                }
-
-                            })
-                        }
                 }
                 viewBinding.errorEmptyIdText.isVisible = false
                 viewBinding.errorDupleConfirmIdText.isVisible = false

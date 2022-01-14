@@ -39,7 +39,7 @@ class LoginViewModel(
         // Id, Password DataBinding 안됨...
         // 일단 임의로 test 데이터로.......
         if (!userId.value.isNullOrBlank() && !password.value.isNullOrBlank()) {
-            if (varifiacateLoginId(userId.value.toString())) {
+            if (varifiacateLoginId(userId.value.toString().trim())) {
                 // 아이디 이메일 형식 검증 성공
                 addDisposable(
                     loginManager.doLogin(

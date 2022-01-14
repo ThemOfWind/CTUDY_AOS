@@ -95,6 +95,16 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
         ).apply {
             if (type == AlertDialogBtnType.ONE) {
                 setOneButtonType()
+
+                dialogClick(object : CommonDialogListener {
+                    override fun onConfirm() {
+                        dismiss()
+                    }
+
+                    override fun onCancle() {
+                        dismiss()
+                    }
+                })
             }
             setContentMsg(msg)
             show()

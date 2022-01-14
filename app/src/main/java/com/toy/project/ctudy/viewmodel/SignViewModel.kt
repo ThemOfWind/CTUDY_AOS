@@ -50,7 +50,7 @@ class SignViewModel(val apiService: ApiService) : BaseViewModel() {
                 .subscribeDone({
                     completeSignOut.postValue(SignUpResponseType.DO_SIGNUP)
                 }, {
-
+                    completeSignOut.postValue(SignUpResponseType.FAIL_SIGNUP)
                 })
         }
     }
