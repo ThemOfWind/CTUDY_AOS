@@ -1,10 +1,7 @@
 package com.toy.project.ctudy.di
 
 import com.toy.project.ctudy.repository.network.LoginManager
-import com.toy.project.ctudy.viewmodel.IntroViewModel
-import com.toy.project.ctudy.viewmodel.LoginViewModel
-import com.toy.project.ctudy.viewmodel.MainViewModel
-import com.toy.project.ctudy.viewmodel.SignViewModel
+import com.toy.project.ctudy.viewmodel.*
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -19,4 +16,5 @@ val ViewModelModule = module {
     viewModel { MainViewModel(get(), get()) }
     viewModel { LoginViewModel(get(), get()) }
     viewModel { SignViewModel(get()) }
+    viewModel { RoomAddViewModel(get()) }
 }

@@ -51,7 +51,6 @@ class LoginManagerImpl(
                 userPref.setAccessToken("")
                 userPref.setRefreshToken("")
                 userPref.setTokenType("")
-                userPref.setLoginId("")
 
                 return@map response
             } else {

@@ -1,5 +1,6 @@
 package com.toy.project.ctudy.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.toy.project.ctudy.common.LoginEditErrorType
 import com.toy.project.ctudy.common.SingleLiveEvent
@@ -28,8 +29,9 @@ class LoginViewModel(
     val loginEditType = SingleLiveEvent<LoginEditErrorType>()
 
     init {
-        // test
-        userId.value = "yh@naver.com"
+        if (!userPref.getLoginId().isNullOrEmpty()) {
+            userId.value = userPref.getLoginId()
+        }
     }
 
     /**
@@ -51,6 +53,7 @@ class LoginViewModel(
                         .subscribeDone({
                             when (it) {
                                 is LoginResponse -> {
+                                    Log.d("유저 AccessToken : ", userPref.getAccessToken().toString())
                                     loginState.value = true
                                 }
                                 else -> {

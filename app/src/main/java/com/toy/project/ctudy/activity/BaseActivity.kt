@@ -145,4 +145,10 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
         }
         loadingDialog = null
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(com.toy.project.ctudy.R.anim.in_left_to_right,
+            com.toy.project.ctudy.R.anim.in_left_to_right)
+    }
 }

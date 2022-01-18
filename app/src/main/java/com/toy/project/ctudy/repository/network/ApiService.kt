@@ -2,11 +2,9 @@ package com.toy.project.ctudy.repository.network
 
 import com.toy.project.ctudy.common.HttpDefine
 import com.toy.project.ctudy.model.LoginData
+import com.toy.project.ctudy.model.RoomEnrollData
 import com.toy.project.ctudy.model.SignUpData
-import com.toy.project.ctudy.model.response.BaseResponse
-import com.toy.project.ctudy.model.response.DupleChkResponse
-import com.toy.project.ctudy.model.response.LoginResponse
-import com.toy.project.ctudy.model.response.SignUpResponse
+import com.toy.project.ctudy.model.response.*
 import io.reactivex.Single
 import retrofit2.http.*
 
@@ -25,4 +23,10 @@ interface ApiService {
 
     @GET(HttpDefine.CTUDY_API + "/account/signup/")
     fun dupleIdConfirm(@Query("username") username: String): Single<DupleChkResponse>
+
+    @POST(HttpDefine.CTUDY_API + "/study/room/")
+    fun studyRoomEnroll(@Body roomEnrollData: RoomEnrollData): Single<BaseResponse>
+
+    @GET(HttpDefine.CTUDY_API + "/study/room/")
+    fun studyAllRoomInquiry(@Header("Authorization") authorization: String): Single<RoomAllResponse>
 }

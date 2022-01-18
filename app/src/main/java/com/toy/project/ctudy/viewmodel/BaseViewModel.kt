@@ -1,11 +1,15 @@
 package com.toy.project.ctudy.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.toy.project.ctudy.common.AlertDialogBtnType
 import com.toy.project.ctudy.common.LoadingDialogType
 import com.toy.project.ctudy.common.NetWorkDialogType
 import com.toy.project.ctudy.common.SingleLiveEvent
 import com.toy.project.ctudy.model.response.BaseResponse
+import com.toy.project.ctudy.repository.etc.CommonDialogListener
+import com.toy.project.ctudy.view.CommonDialog
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -67,10 +71,13 @@ open class BaseViewModel : ViewModel() {
             dissmissDialog()
             success.invoke(response)
         }, {
+            // 현재 response success가 아닐 경우
+            // 200 이외의 코드가 떨어져 이 경우 json body 생성 및 가공한다
             val error = it as HttpException
             val errorBody = error.response()?.errorBody()?.string()
             val message = responseErrorBody(errorBody.toString())
             dissmissDialog()
+            // fail일 경우 콜백메소드에 에러메세지 넘김
             fail.invoke(message)
         })
         dissmissDialog()
@@ -90,6 +97,36 @@ open class BaseViewModel : ViewModel() {
 
     fun dissmissDialog() {
         startLoadingDialogState.postValue(LoadingDialogType.DISMISS)
+    }
+
+    /**
+     * One Or Two 버튼 공통 팝업 정의
+     * 버튼별 리스너는 리턴되는 CommonDialog 내에서 각각 정의되도록 한다.
+     */
+    protected fun showCommonDialog(
+        context: Context,
+        type: AlertDialogBtnType,
+        msg: String,
+    ): CommonDialog {
+        return CommonDialog(
+            context = context
+        ).apply {
+            if (type == AlertDialogBtnType.ONE) {
+                setOneButtonType()
+
+                dialogClick(object : CommonDialogListener {
+                    override fun onConfirm() {
+                        dismiss()
+                    }
+
+                    override fun onCancle() {
+                        dismiss()
+                    }
+                })
+            }
+            setContentMsg(msg)
+            show()
+        }
     }
 
     override fun onCleared() {

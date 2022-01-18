@@ -32,4 +32,7 @@
     <string name="sign_in_fail">회원가입에 실패하였습니다.</string>
     <string name="sign_in_duple_confirm_success">사용 가능한 아이디입니다.</string>
     <string name="sign_in_duple_confirm_fail">중복된 아이디가 존재합니다.</string>
+
+    <!-- 스터디 룸 등록 -->
+    <string name="enroll_study_room_text">스터디 룸 등록</string>
 </resources>

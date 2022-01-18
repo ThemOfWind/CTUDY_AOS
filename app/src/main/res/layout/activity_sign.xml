@@ -304,6 +304,7 @@
                 android:layout_marginBottom="@dimen/dp_size_15"
                 android:text="@string/sign_in_btn_text"
                 android:textColor="@color/white"
+                android:textSize="@dimen/text_size_16"
                 android:textStyle="bold" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
