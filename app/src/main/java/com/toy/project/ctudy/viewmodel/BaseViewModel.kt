@@ -99,36 +99,6 @@ open class BaseViewModel : ViewModel() {
         startLoadingDialogState.postValue(LoadingDialogType.DISMISS)
     }
 
-    /**
-     * One Or Two 버튼 공통 팝업 정의
-     * 버튼별 리스너는 리턴되는 CommonDialog 내에서 각각 정의되도록 한다.
-     */
-    protected fun showCommonDialog(
-        context: Context,
-        type: AlertDialogBtnType,
-        msg: String,
-    ): CommonDialog {
-        return CommonDialog(
-            context = context
-        ).apply {
-            if (type == AlertDialogBtnType.ONE) {
-                setOneButtonType()
-
-                dialogClick(object : CommonDialogListener {
-                    override fun onConfirm() {
-                        dismiss()
-                    }
-
-                    override fun onCancle() {
-                        dismiss()
-                    }
-                })
-            }
-            setContentMsg(msg)
-            show()
-        }
-    }
-
     override fun onCleared() {
         super.onCleared()
         if (!compositeDisposable.isDisposed) {

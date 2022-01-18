@@ -29,8 +29,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(),
             loginState.observe(this@LoginActivity, {
                 if (it)
                     singleStartActivity<MainActivity>()
-                showCommonDialog(AlertDialogBtnType.ONE,
-                    this@LoginActivity.resources.getString(R.string.login_error_text))
+                else
+                    showCommonDialog(AlertDialogBtnType.ONE,
+                        this@LoginActivity.resources.getString(R.string.login_error_text))
             })
 
             loginEditType.observe(this@LoginActivity, {

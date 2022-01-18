@@ -53,15 +53,18 @@ class LoginViewModel(
                         .subscribeDone({
                             when (it) {
                                 is LoginResponse -> {
-                                    Log.d("유저 AccessToken : ", userPref.getAccessToken().toString())
-                                    loginState.value = true
+                                    if(it.result){
+                                        loginState.postValue(true)
+                                    }else{
+                                        loginState.postValue(false)
+                                    }
                                 }
                                 else -> {
-                                    loginState.value = false
+                                    loginState.postValue(false)
                                 }
                             }
                         }, {
-                            loginState.value = false
+                            loginState.postValue(false)
                         })
                 )
             } else {
