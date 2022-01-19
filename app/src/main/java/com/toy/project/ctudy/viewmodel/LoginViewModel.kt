@@ -1,6 +1,5 @@
 package com.toy.project.ctudy.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.toy.project.ctudy.common.LoginEditErrorType
 import com.toy.project.ctudy.common.SingleLiveEvent
@@ -11,7 +10,6 @@ import com.toy.project.ctudy.repository.network.LoginManager
 import com.toy.project.ctudy.repository.pref.UserPref
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.util.regex.Pattern
 
 /**
  * Login ViewModel

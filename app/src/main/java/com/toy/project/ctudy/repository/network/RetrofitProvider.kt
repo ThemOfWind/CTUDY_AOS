@@ -1,5 +1,6 @@
 package com.toy.project.ctudy.repository.network
 
+import com.toy.project.ctudy.repository.pref.UserPref
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -15,10 +16,13 @@ interface RetrofitProvider {
     fun createClient(): OkHttpClient
 }
 
-class ApplicationInterCeptor : Interceptor {
+class ApplicationInterCeptor(userPref: UserPref) : Interceptor {
     private val REQUEST_ACCEPT = "accept"
     private val CONTEXT_TYPE = "Content-Type"
     private val ACCEPT_CONTENT_TYPE = "application/json; charset=UTF-8"
+    private val AUTHORIZATION = "Authorization"
+    private val loginState = userPref.getLoginStatus()
+    private val authorizationToken = userPref.getAuthorizationToken()
 
     /**
      * Application -> Okhttp 사이 동작
@@ -28,6 +32,12 @@ class ApplicationInterCeptor : Interceptor {
         val origin = chain.request()
         val request = origin.newBuilder().apply {
             header(REQUEST_ACCEPT, ACCEPT_CONTENT_TYPE)
+            // 로그인 상태일 경우 헤더에 Token 추가
+            if (loginState) {
+                if (authorizationToken.isNotEmpty()) {
+                    addHeader(AUTHORIZATION, authorizationToken)
+                }
+            }
             addHeader(CONTEXT_TYPE, ACCEPT_CONTENT_TYPE)
             method(origin.method, origin.body)
         }.build()
@@ -47,8 +57,9 @@ class NetWorkInterceptor : Interceptor {
     }
 }
 
-class RetrofitProviderImpl : RetrofitProvider {
+class RetrofitProviderImpl(userPref: UserPref) : RetrofitProvider {
     private val DEFAULT_TIMEOUT: Long = 15
+    private val _userPref = userPref
 
     override fun createClient() = OkHttpClient.Builder().apply {
 //        // Debug용
@@ -59,7 +70,7 @@ class RetrofitProviderImpl : RetrofitProvider {
         readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
         callTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
-        addInterceptor(ApplicationInterCeptor())
+        addInterceptor(ApplicationInterCeptor(userPref = _userPref))
         addNetworkInterceptor(NetWorkInterceptor())
     }.build()
 }

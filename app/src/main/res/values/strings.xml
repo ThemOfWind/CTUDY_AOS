@@ -34,5 +34,9 @@
     <string name="sign_in_duple_confirm_fail">중복된 아이디가 존재합니다.</string>
 
     <!-- 스터디 룸 등록 -->
-    <string name="enroll_study_room_text">스터디 룸 등록</string>
+    <string name="enroll_study_room_title_text">스터디 룸 등록</string>
+    <string name="enroll_study_room_name_text">스터디 이름</string>
+    <string name="enroll_study_room_text">등록</string>
+    <string name="enroll_study_room_success">스터디 룸 등록되었습니다.</string>
+    <string name="enroll_study_room_fail">스터디 룸 등록에 실패하였습니다.</string>
 </resources>

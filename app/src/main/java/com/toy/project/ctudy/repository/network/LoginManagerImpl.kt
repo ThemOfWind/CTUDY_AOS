@@ -46,7 +46,7 @@ class LoginManagerImpl(
     }
 
     override fun doLogout(): Single<Any> {
-        return apiService.logout(userPref.getAuthorizationToken()).map { response ->
+        return apiService.logout().map { response ->
             if (response.result == true) {
                 userPref.setAccessToken("")
                 userPref.setRefreshToken("")
@@ -57,11 +57,11 @@ class LoginManagerImpl(
                 return@map Throwable("Logout Error")
             }
         }
-        .flatMap { response ->
-            when (response) {
-                is BaseResponse -> return@flatMap Single.create { it.onSuccess(response) }
-                else -> return@flatMap Single.create { it.onError(Throwable(response.toString())) }
+            .flatMap { response ->
+                when (response) {
+                    is BaseResponse -> return@flatMap Single.create { it.onSuccess(response) }
+                    else -> return@flatMap Single.create { it.onError(Throwable(response.toString())) }
+                }
             }
-        }
     }
 }

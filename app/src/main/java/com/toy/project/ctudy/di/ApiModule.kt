@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val apiModule = module {
 
     single<RetrofitProvider> {
-        RetrofitProviderImpl()
+        RetrofitProviderImpl(get())
     }
 
     single<ApiService> {

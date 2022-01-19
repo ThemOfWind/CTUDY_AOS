@@ -5,7 +5,6 @@ import com.toy.project.ctudy.common.SingleLiveEvent
 import com.toy.project.ctudy.model.response.BaseResponse
 import com.toy.project.ctudy.repository.network.LoginManager
 import com.toy.project.ctudy.repository.pref.UserPref
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 

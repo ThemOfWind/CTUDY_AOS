@@ -4,8 +4,6 @@ import android.animation.ObjectAnimator
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import com.toy.project.ctudy.BR
 import com.toy.project.ctudy.R
 import com.toy.project.ctudy.databinding.ActivityMainBinding
@@ -50,22 +48,27 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                         .apply { start() }
                 }
             })
+
             // 스터디 룸 등록 페이지 이동
             addRoomFab.observe(this@MainActivity, {
                 startMoveActivity<RoomAddActivity>()
             })
-
         }
 
+        initSet()
+    }
+
+    fun initSet() {
+        // Floating Button 이미지 색상 변경
+        viewBinding.mainLogoutFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
+        viewBinding.mainAddFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
+        viewBinding.mainMenuFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
+
+        // 헤더 세팅
         viewBinding.headerView.setInitHeader(
             HeaderView.HEADER_BASIC,
             this@MainActivity.resources.getString(R.string.app_name),
             this@MainActivity
         )
-
-        // Floating Button 이미지 색상 변경
-        viewBinding.mainLogoutFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
-        viewBinding.mainAddFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
-        viewBinding.mainMenuFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
     }
 }

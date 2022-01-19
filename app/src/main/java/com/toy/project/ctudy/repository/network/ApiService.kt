@@ -16,7 +16,7 @@ interface ApiService {
     fun login(@Body loginData: LoginData): Single<LoginResponse>
 
     @GET(HttpDefine.CTUDY_API + "/account/logout/")
-    fun logout(@Header("Authorization") authorization: String): Single<BaseResponse>
+    fun logout(): Single<BaseResponse>
 
     @POST(HttpDefine.CTUDY_API + "/account/signup/")
     fun signUp(@Body signUpData: SignUpData): Single<SignUpResponse>
@@ -28,5 +28,5 @@ interface ApiService {
     fun studyRoomEnroll(@Body roomEnrollData: RoomEnrollData): Single<BaseResponse>
 
     @GET(HttpDefine.CTUDY_API + "/study/room/")
-    fun studyAllRoomInquiry(@Header("Authorization") authorization: String): Single<RoomAllResponse>
+    fun studyAllRoomInquiry(): Single<RoomAllResponse>
 }

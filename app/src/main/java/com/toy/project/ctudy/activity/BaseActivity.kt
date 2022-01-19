@@ -1,6 +1,5 @@
 package com.toy.project.ctudy.activity
 
-import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -8,7 +7,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleObserver
 import com.toy.project.ctudy.common.AlertDialogBtnType
 import com.toy.project.ctudy.common.LoadingDialogType
-import com.toy.project.ctudy.common.LoginEditErrorType
 import com.toy.project.ctudy.repository.etc.CommonDialogListener
 import com.toy.project.ctudy.repository.etc.CommonDialogManager
 import com.toy.project.ctudy.view.CommonDialog
