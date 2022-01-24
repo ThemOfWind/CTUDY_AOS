@@ -4,8 +4,11 @@ import android.animation.ObjectAnimator
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.toy.project.ctudy.BR
 import com.toy.project.ctudy.R
+import com.toy.project.ctudy.adapter.MainRoomAdapter
 import com.toy.project.ctudy.databinding.ActivityMainBinding
 import com.toy.project.ctudy.extension.singleStartActivity
 import com.toy.project.ctudy.extension.startMoveActivity
@@ -24,7 +27,31 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Floating Button 이미지 색상 변경
+        viewBinding.mainLogoutFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
+        viewBinding.mainAddFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
+        viewBinding.mainMenuFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
+
+        // 헤더 세팅
+        viewBinding.headerView.setInitHeader(
+            HeaderView.HEADER_BASIC,
+            this@MainActivity.resources.getString(R.string.app_name),
+            this@MainActivity
+        )
+
+        /**
+         * viewModel Observe 정의
+         */
         with(viewModel) {
+            mainRoomList.observe(this@MainActivity, {
+                val mainRoomAdapter = MainRoomAdapter(it)
+                viewBinding.roomRecyclerView.apply {
+                    layoutManager = LinearLayoutManager(context)
+                    setHasFixedSize(true)
+                    adapter = mainRoomAdapter
+                }
+            })
+
             // 로그아웃
             loginState.observe(this@MainActivity, {
                 if (it) {
@@ -54,21 +81,5 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 startMoveActivity<RoomAddActivity>()
             })
         }
-
-        initSet()
-    }
-
-    fun initSet() {
-        // Floating Button 이미지 색상 변경
-        viewBinding.mainLogoutFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
-        viewBinding.mainAddFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
-        viewBinding.mainMenuFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
-
-        // 헤더 세팅
-        viewBinding.headerView.setInitHeader(
-            HeaderView.HEADER_BASIC,
-            this@MainActivity.resources.getString(R.string.app_name),
-            this@MainActivity
-        )
     }
 }

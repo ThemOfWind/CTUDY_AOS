@@ -3,6 +3,8 @@ package com.toy.project.ctudy.viewmodel
 import androidx.lifecycle.MutableLiveData
 import com.toy.project.ctudy.common.SingleLiveEvent
 import com.toy.project.ctudy.model.response.BaseResponse
+import com.toy.project.ctudy.model.response.RoomAllResponseList
+import com.toy.project.ctudy.repository.network.ApiService
 import com.toy.project.ctudy.repository.network.LoginManager
 import com.toy.project.ctudy.repository.pref.UserPref
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,15 +14,32 @@ import io.reactivex.schedulers.Schedulers
  * Main ViewModel
  */
 class MainViewModel(
+    val apiService: ApiService,
     val loginManager: LoginManager,
-    private val userPref: UserPref,
 ) : BaseViewModel() {
-
-    val userData = MutableLiveData<UserPref>()
 
     val loginState = SingleLiveEvent<Boolean>()
     val menuFab = SingleLiveEvent<Boolean>()
     val addRoomFab = SingleLiveEvent<Unit>()
+
+    val mainRoomList = MutableLiveData<ArrayList<RoomAllResponseList>>()
+
+    init {
+        // 메인 룸 스터디 리스트 API 조회
+        addDisposable(
+            apiService.studyAllRoomInquiry()
+                .startLoading()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeDone({
+                    if (it.result) {
+                        mainRoomList.postValue(it.responseList)
+                    }
+                }, {
+
+                })
+        )
+    }
 
     /**
      * 로그아웃 API

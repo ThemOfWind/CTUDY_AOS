@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDialog
 import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
 import com.toy.project.ctudy.R
+import com.toy.project.ctudy.extension.CommonFunction
 
 /**
  * 공통 Loading View
@@ -22,6 +23,7 @@ class LoadingDialog(context: Context) : AppCompatDialog(context) {
         setContentView(R.layout.common_loading)
 
         var loadingImg = findViewById<AppCompatImageView>(R.id.loading_img)
-        Glide.with(mContext).load(R.drawable.loading_dialog).into(loadingImg!!)
+
+        CommonFunction.setBgImageView(mContext, R.drawable.loading_dialog, loadingImg!!)
     }
 }
