@@ -1,5 +1,6 @@
 package com.toy.project.ctudy.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.toy.project.ctudy.common.SingleLiveEvent
 import com.toy.project.ctudy.model.response.BaseResponse
@@ -34,6 +35,7 @@ class MainViewModel(
                 .subscribeDone({
                     if (it.result) {
                         mainRoomList.postValue(it.responseList)
+                        Log.d("로그 :: 메인 리스트 성공", it.responseList.size.toString())
                     }
                 }, {
 

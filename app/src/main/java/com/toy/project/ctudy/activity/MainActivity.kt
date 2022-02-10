@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.toy.project.ctudy.BR
@@ -44,11 +45,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
          */
         with(viewModel) {
             mainRoomList.observe(this@MainActivity, {
+                Log.d("로그 :: 리스트사이즈", it.size.toString())
                 val mainRoomAdapter = MainRoomAdapter(it)
                 viewBinding.roomRecyclerView.apply {
                     layoutManager = LinearLayoutManager(context)
-                    setHasFixedSize(true)
                     adapter = mainRoomAdapter
+                    setHasFixedSize(true)
                 }
             })
 

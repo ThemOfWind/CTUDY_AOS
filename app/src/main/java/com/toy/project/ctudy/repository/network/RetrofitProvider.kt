@@ -1,5 +1,6 @@
 package com.toy.project.ctudy.repository.network
 
+import android.util.Log
 import com.toy.project.ctudy.repository.pref.UserPref
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -36,6 +37,7 @@ class ApplicationInterCeptor(userPref: UserPref) : Interceptor {
             if (loginState) {
                 if (authorizationToken.isNotEmpty()) {
                     addHeader(AUTHORIZATION, authorizationToken)
+                    Log.d("로그 :: 토큰", authorizationToken)
                 }
             }
             addHeader(CONTEXT_TYPE, ACCEPT_CONTENT_TYPE)

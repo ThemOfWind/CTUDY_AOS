@@ -1,7 +1,5 @@
 package com.toy.project.ctudy.model.response
 
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.databinding.BindingAdapter
 import com.google.gson.annotations.SerializedName
 
 data class RoomAllResponse(
@@ -11,13 +9,13 @@ data class RoomAllResponse(
 
 data class RoomAllResponseList(
     @SerializedName("id")
-    val id: String,
+    val id: String?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("member_count")
-    val member_count: String,
+    val member_count: String?,
     @SerializedName("master_name")
-    val master_name: String,
+    val master_name: String?,
     @SerializedName("imageUrl")
-    val imagePath: String = "http://mixedcode.com/Upload/Board/meetreviewtitle.jpg",
+    val imagePath: String? = "http://mixedcode.com/Upload/Board/meetreviewtitle.jpg",
 )
