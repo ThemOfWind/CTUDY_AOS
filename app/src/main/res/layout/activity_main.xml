@@ -10,91 +10,90 @@
             type="com.toy.project.ctudy.viewmodel.MainViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.MainActivity">
+        android:orientation="vertical">
 
         <com.toy.project.ctudy.view.HeaderView
             android:id="@+id/header_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_view">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/room_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- 메뉴 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/dp_size_20"
-            android:layout_marginBottom="@dimen/dp_size_25"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
+            tools:context=".activity.MainActivity">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/main_add_fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{()->viewModel.moveEnrollRoom()}"
-                android:src="@drawable/add_btn"
-                app:borderWidth="0dp"
-                app:elevation="0dp"
-                app:layout_constraintBottom_toBottomOf="@id/main_menu_fab"
-                app:layout_constraintLeft_toLeftOf="@id/main_menu_fab"
-                app:layout_constraintRight_toRightOf="@id/main_menu_fab"
-                app:layout_constraintTop_toTopOf="@id/main_menu_fab"
-                app:layout_goneMarginBottom="0dp"
-                app:maxImageSize="@dimen/dp_size_20"
-                app:useCompatPadding="false" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/main_logout_fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="@{()->viewModel.logOut()}"
-                android:src="@drawable/logout_btn"
-                app:borderWidth="0dp"
-                app:elevation="0dp"
-                app:layout_constraintBottom_toBottomOf="@id/main_menu_fab"
-                app:layout_constraintLeft_toLeftOf="@id/main_menu_fab"
-                app:layout_constraintRight_toRightOf="@id/main_menu_fab"
-                app:layout_constraintTop_toTopOf="@id/main_menu_fab"
-                app:layout_goneMarginBottom="0dp"
-                app:maxImageSize="@dimen/dp_size_20"
-                app:useCompatPadding="false" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/recyclerview_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/main_menu_fab"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/room_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- 메뉴 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:onClick="@{()-> viewModel.clickMenuFab()}"
-                android:src="@drawable/menu_icon"
-                app:borderWidth="0dp"
-                app:elevation="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_size_20"
+                android:layout_marginBottom="@dimen/dp_size_25"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:maxImageSize="@dimen/dp_size_20"
-                app:useCompatPadding="false" />
+                app:layout_constraintRight_toRightOf="parent">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/main_add_fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->viewModel.moveEnrollRoom()}"
+                    android:src="@drawable/add_btn"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/main_menu_fab"
+                    app:layout_constraintLeft_toLeftOf="@id/main_menu_fab"
+                    app:layout_constraintRight_toRightOf="@id/main_menu_fab"
+                    app:layout_constraintTop_toTopOf="@id/main_menu_fab"
+                    app:layout_goneMarginBottom="0dp"
+                    app:maxImageSize="@dimen/dp_size_20"
+                    app:useCompatPadding="false" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/main_logout_fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{()->viewModel.logOut()}"
+                    android:src="@drawable/logout_btn"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/main_menu_fab"
+                    app:layout_constraintLeft_toLeftOf="@id/main_menu_fab"
+                    app:layout_constraintRight_toRightOf="@id/main_menu_fab"
+                    app:layout_constraintTop_toTopOf="@id/main_menu_fab"
+                    app:layout_goneMarginBottom="0dp"
+                    app:maxImageSize="@dimen/dp_size_20"
+                    app:useCompatPadding="false" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/main_menu_fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:onClick="@{()-> viewModel.clickMenuFab()}"
+                    android:src="@drawable/menu_icon"
+                    app:borderWidth="0dp"
+                    app:elevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:maxImageSize="@dimen/dp_size_20"
+                    app:useCompatPadding="false" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

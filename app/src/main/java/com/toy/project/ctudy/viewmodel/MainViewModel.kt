@@ -2,7 +2,9 @@ package com.toy.project.ctudy.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.toy.project.ctudy.activity.MainActivity
 import com.toy.project.ctudy.common.SingleLiveEvent
+import com.toy.project.ctudy.extension.singleStartActivity
 import com.toy.project.ctudy.model.response.BaseResponse
 import com.toy.project.ctudy.model.response.RoomAllResponseList
 import com.toy.project.ctudy.repository.network.ApiService
@@ -26,7 +28,13 @@ class MainViewModel(
     val mainRoomList = MutableLiveData<ArrayList<RoomAllResponseList>>()
 
     init {
-        // 메인 룸 스터디 리스트 API 조회
+        getStudyRoomList()
+    }
+
+    /**
+     * 메인 룸 스터디 리스트 API 조회
+     */
+    fun getStudyRoomList() {
         addDisposable(
             apiService.studyAllRoomInquiry()
                 .startLoading()
@@ -38,7 +46,7 @@ class MainViewModel(
                         Log.d("로그 :: 메인 리스트 성공", it.responseList.size.toString())
                     }
                 }, {
-
+                    loginState.postValue(true)
                 })
         )
     }
@@ -55,14 +63,14 @@ class MainViewModel(
                 .subscribeDone({
                     when (it) {
                         is BaseResponse -> {
-                            loginState.value = true
+                            loginState.postValue(true)
                         }
                         else -> {
-                            loginState.value = false
+                            loginState.postValue(false)
                         }
                     }
                 }, {
-                    loginState.value = false
+                    loginState.postValue(false)
                 })
         )
     }

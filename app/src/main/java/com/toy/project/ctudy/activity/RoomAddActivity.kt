@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.toy.project.ctudy.BR
 import com.toy.project.ctudy.R
 import com.toy.project.ctudy.common.AlertDialogBtnType
+import com.toy.project.ctudy.common.CommonDefine.ROOM_ADD_REQUEST_CODE
 import com.toy.project.ctudy.databinding.ActivityRoomAddBinding
 import com.toy.project.ctudy.repository.etc.CommonDialogListener
 import com.toy.project.ctudy.view.HeaderView
@@ -32,10 +33,11 @@ class RoomAddActivity : BaseActivity<ActivityRoomAddBinding, RoomAddViewModel>()
                 if (it)
                     showCommonDialog(
                         AlertDialogBtnType.ONE,
-                        this@RoomAddActivity.resources.getString(R.string.sign_in_success))
+                        this@RoomAddActivity.resources.getString(R.string.enroll_study_room_success))
                         .let {
                             it.dialogClick(object : CommonDialogListener {
                                 override fun onConfirm() {
+                                    setResult(ROOM_ADD_REQUEST_CODE)
                                     finish()
                                 }
 
@@ -47,7 +49,7 @@ class RoomAddActivity : BaseActivity<ActivityRoomAddBinding, RoomAddViewModel>()
                 else
                     showCommonDialog(
                         AlertDialogBtnType.ONE,
-                        this@RoomAddActivity.resources.getString(R.string.sign_in_fail))
+                        this@RoomAddActivity.resources.getString(R.string.enroll_study_room_fail))
             })
         }
     }
