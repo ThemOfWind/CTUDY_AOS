@@ -17,4 +17,5 @@ val ViewModelModule = module {
     viewModel { LoginViewModel(get(), get()) }
     viewModel { SignViewModel(get()) }
     viewModel { RoomAddViewModel(get()) }
+    viewModel { RoomDetailViewModel(get()) }
 }

@@ -2,18 +2,24 @@ package com.toy.project.ctudy.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.toy.project.ctudy.R
 import com.toy.project.ctudy.databinding.MainRoomItemBinding
+import com.toy.project.ctudy.interfaces.RoomClickListener
 import com.toy.project.ctudy.model.response.RoomAllResponseList
 
-class MainRoomAdapter(roomList: ArrayList<RoomAllResponseList>) :
+class MainRoomAdapter(
+    roomList: ArrayList<RoomAllResponseList>,
+    roomClickListener: RoomClickListener,
+) :
     RecyclerView.Adapter<MainRoomViewHolder>() {
 
     lateinit var mContext: Context
     private var mRoomList = roomList
+    private var mRoomClickListener = roomClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainRoomViewHolder {
         mContext = parent.context
@@ -27,6 +33,12 @@ class MainRoomAdapter(roomList: ArrayList<RoomAllResponseList>) :
 
     override fun onBindViewHolder(holder: MainRoomViewHolder, position: Int) {
         holder.bind(mRoomList.get(position))
+
+        holder.binding.mainStudyLayout.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                mRoomClickListener.onRoomDetailClick(mRoomList.get(position).id!!)
+            }
+        })
     }
 
     override fun getItemCount(): Int {

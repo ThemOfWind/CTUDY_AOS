@@ -2,7 +2,9 @@ package com.toy.project.ctudy.extension
 
 import android.app.Activity
 import android.content.Intent
+import androidx.activity.result.ActivityResultLauncher
 import com.toy.project.ctudy.R
+import com.toy.project.ctudy.common.CommonDefine.ROOM_DETAIL_ID
 
 /**
  * Activity 이동 공통 정의
@@ -24,8 +26,20 @@ inline fun <reified T : Activity> Activity.startMoveActivity() {
     overridePendingTransition(R.anim.in_right_to_left, R.anim.in_right_to_left)
 }
 
-inline fun <reified T : Activity> Activity.startMoveResultActivity(requestCode: Int) {
+inline fun <reified T : Activity> Activity.moveRoomAddActivity(
+    result: ActivityResultLauncher<Intent>,
+) {
     val intent = Intent(this, T::class.java)
-    startActivityForResult(intent, requestCode)
+    result.launch(intent)
+    overridePendingTransition(R.anim.in_right_to_left, R.anim.in_right_to_left)
+}
+
+inline fun <reified T : Activity> Activity.moveRoomDetailActivity(
+    id: String,
+    result: ActivityResultLauncher<Intent>,
+) {
+    val intent = Intent(this, T::class.java)
+    intent.putExtra(ROOM_DETAIL_ID, id)
+    result.launch(intent)
     overridePendingTransition(R.anim.in_right_to_left, R.anim.in_right_to_left)
 }

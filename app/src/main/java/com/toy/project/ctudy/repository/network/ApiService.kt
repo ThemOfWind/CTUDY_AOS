@@ -29,4 +29,7 @@ interface ApiService {
 
     @GET(HttpDefine.CTUDY_API + "/study/room/")
     fun studyAllRoomInquiry(): Single<RoomAllResponse>
+
+    @GET(HttpDefine.CTUDY_API + "/study/room/{id}")
+    fun studyRoomDetail(@Path("id") id: String): Single<RoomDetailResponse>
 }

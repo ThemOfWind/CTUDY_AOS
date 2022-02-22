@@ -75,7 +75,6 @@ class MainViewModel(
         )
     }
 
-
     /**
      * 메뉴 Floating Button 클릭
      */
