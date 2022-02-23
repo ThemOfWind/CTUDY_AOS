@@ -22,9 +22,7 @@ class ApplicationInterCeptor(userPref: UserPref) : Interceptor {
     private val CONTEXT_TYPE = "Content-Type"
     private val ACCEPT_CONTENT_TYPE = "application/json; charset=UTF-8"
     private val AUTHORIZATION = "Authorization"
-    private val loginState = userPref.getLoginStatus()
-    private val authorizationToken = userPref.getAuthorizationToken()
-
+    private val mUserPref = userPref
     /**
      * Application -> Okhttp 사이 동작
      * 기본 Interceptor 구현
@@ -34,10 +32,10 @@ class ApplicationInterCeptor(userPref: UserPref) : Interceptor {
         val request = origin.newBuilder().apply {
             header(REQUEST_ACCEPT, ACCEPT_CONTENT_TYPE)
             // 로그인 상태일 경우 헤더에 Token 추가
-            if (loginState) {
-                if (authorizationToken.isNotEmpty()) {
-                    addHeader(AUTHORIZATION, authorizationToken)
-                    Log.d("로그 :: 토큰", authorizationToken)
+            if (mUserPref.getLoginStatus()) {
+                if (mUserPref.getAuthorizationToken()!!.isNotEmpty()) {
+                    addHeader(AUTHORIZATION, mUserPref.getAuthorizationToken()!!)
+                    Log.d("로그 :: 토큰", mUserPref.getAuthorizationToken()!!)
                 }
             }
             addHeader(CONTEXT_TYPE, ACCEPT_CONTENT_TYPE)

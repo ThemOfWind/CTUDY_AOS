@@ -39,4 +39,8 @@
     <string name="enroll_study_room_text">등록</string>
     <string name="enroll_study_room_success">스터디 룸 등록되었습니다.</string>
     <string name="enroll_study_room_fail">스터디 룸 등록에 실패하였습니다.</string>
+
+    <!-- 스터디 룸 상세-->
+    <string name="study_room_detail_delete_text">삭제</string>
+    <string name="study_room_detail_modify_text">수정</string>
 </resources>

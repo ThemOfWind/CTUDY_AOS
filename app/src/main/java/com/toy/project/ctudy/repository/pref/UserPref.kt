@@ -11,6 +11,7 @@ class UserPref(pref: SharedPreferences) : BasePref(pref) {
     private val USER_LOGIN_TOKEN_TYPE = "login_token_type"
     private val USER_LOGIN_REFRESH_TOKEN = "login_refresh_token"
     private val USER_AUTO_LOGIN = "login_auto_login"
+    private val USER_BEAR_TOKEN = "login_bear_token"
 
     fun setLoginId(id: String?) {
         setValue(USER_LOGIN_ID, id)
@@ -52,11 +53,12 @@ class UserPref(pref: SharedPreferences) : BasePref(pref) {
         return getValue(USER_AUTO_LOGIN, false)
     }
 
-    fun getAuthorizationToken(): String {
-        if (!getTokenType().isNullOrEmpty() && !getAccessToken().isNullOrEmpty()) {
-            return getTokenType() + " " + getAccessToken()
-        }
-        return ""
+    fun setAuthorizationToken(bearToken : String) {
+        setValue(USER_BEAR_TOKEN, bearToken)
+    }
+
+    fun getAuthorizationToken(): String? {
+        return getValue(USER_BEAR_TOKEN, "")
     }
 
     fun getLoginStatus(): Boolean {

@@ -24,6 +24,7 @@ class LoginManagerImpl(
                     userPref.setRefreshToken(result.response.refresh_token)
                     userPref.setTokenType(result.response.token_type)
                     userPref.setLoginId(loginData.username)
+                    userPref.setAuthorizationToken(result.response.token_type + " " + result.response.access_token)
 
                     return@map result
                 } else {
@@ -51,6 +52,7 @@ class LoginManagerImpl(
                 userPref.setAccessToken("")
                 userPref.setRefreshToken("")
                 userPref.setTokenType("")
+                userPref.setAuthorizationToken("")
 
                 return@map response
             } else {
