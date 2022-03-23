@@ -1,7 +1,6 @@
 package com.toy.project.ctudy.common
 
 import androidx.annotation.StringRes
-import com.toy.project.ctudy.CtudyApplication
 import com.toy.project.ctudy.R
 
 /**

@@ -3,6 +3,7 @@ package com.toy.project.ctudy.repository.network
 import com.toy.project.ctudy.common.HttpDefine
 import com.toy.project.ctudy.model.LoginData
 import com.toy.project.ctudy.model.RoomEnrollData
+import com.toy.project.ctudy.model.RoomModifyData
 import com.toy.project.ctudy.model.SignUpData
 import com.toy.project.ctudy.model.response.*
 import io.reactivex.Single
@@ -30,6 +31,20 @@ interface ApiService {
     @GET(HttpDefine.CTUDY_API + "/study/room/")
     fun studyAllRoomInquiry(): Single<RoomAllResponse>
 
+    // 스터디룸 상세 조회
     @GET(HttpDefine.CTUDY_API + "/study/room/{id}")
     fun studyRoomDetail(@Path("id") id: String): Single<RoomDetailResponse>
+
+    // 스터디룸 수정
+    @PUT(HttpDefine.CTUDY_API + "/study/room/{id}")
+    fun studyRoomModify(
+        @Body modifyData: RoomModifyData,
+        @Path("id") id: String,
+    ): Single<ReturnResultResponse>
+
+    // 스터디룸 삭제
+    @DELETE(HttpDefine.CTUDY_API + "/study/room/{id}")
+    fun studyRoomDelete(
+        @Path("id") id: String,
+    ): Single<ReturnResultResponse>
 }

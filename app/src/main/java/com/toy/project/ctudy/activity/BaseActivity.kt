@@ -7,6 +7,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleObserver
 import com.toy.project.ctudy.common.AlertDialogBtnType
 import com.toy.project.ctudy.common.LoadingDialogType
+import com.toy.project.ctudy.extension.singleStartActivity
 import com.toy.project.ctudy.repository.etc.CommonDialogListener
 import com.toy.project.ctudy.repository.etc.CommonDialogManager
 import com.toy.project.ctudy.view.CommonDialog
@@ -50,6 +51,10 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
 
         viewModel.networkAlertDialogState.observe(this@BaseActivity, {
             networkAlertDialog(this@BaseActivity.resources.getString(it))
+        })
+
+        viewModel.expireLoginState.observe(this@BaseActivity, {
+            expireLogin()
         })
     }
 
@@ -106,6 +111,22 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
             }
             setContentMsg(msg)
             show()
+        }
+    }
+
+    protected fun expireLogin() {
+        val msg = this.resources.getString(com.toy.project.ctudy.R.string.expire_login);
+        showCommonDialog(AlertDialogBtnType.ONE,
+            msg).let {
+            it.dialogClick(object : CommonDialogListener {
+                override fun onConfirm() {
+                    singleStartActivity<LoginActivity>()
+                }
+
+                override fun onCancle() {
+                    it.dismiss()
+                }
+            })
         }
     }
 

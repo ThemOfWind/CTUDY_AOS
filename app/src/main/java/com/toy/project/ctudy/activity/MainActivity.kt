@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,7 +58,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
          */
         with(viewModel) {
             mainRoomList.observe(this@MainActivity, { data ->
-                Log.d("로그 :: 리스트사이즈", data.size.toString())
                 if (mRoomList.size != data.size && mMainRoomAdapter != null) {
                     mMainRoomAdapter!!.setData(data)
                     viewBinding.roomRecyclerView.scrollToPosition(0)
@@ -121,7 +119,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         return object : RoomClickListener {
             override fun onRoomDetailClick(id: String) {
                 id.let {
-                    moveRoomDetailActivity<RoomDetailActivity>(id, mResult) }
+                    moveRoomDetailActivity<RoomDetailActivity>(id, mResult)
+                }
             }
         }
     }

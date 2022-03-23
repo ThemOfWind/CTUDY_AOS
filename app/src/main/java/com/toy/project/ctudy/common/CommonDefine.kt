@@ -8,5 +8,5 @@ object CommonDefine {
     val ROOM_ADD_REQUEST_CODE = 400;
 
     // Key 지정
-    val ROOM_DETAIL_ID = "ID";
+    val ROOM_DETAIL_ID = "ID"
 }

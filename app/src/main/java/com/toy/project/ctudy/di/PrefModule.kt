@@ -2,8 +2,6 @@ package com.toy.project.ctudy.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.toy.project.ctudy.repository.network.LoginManager
-import com.toy.project.ctudy.repository.network.LoginManagerImpl
 import com.toy.project.ctudy.repository.pref.UserPref
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module

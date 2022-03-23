@@ -9,6 +9,7 @@ import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.internal.observers.ConsumerSingleObserver
+import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.HttpException
 
@@ -22,6 +23,7 @@ import retrofit2.HttpException
 open class BaseViewModel : ViewModel() {
     val networkAlertDialogState = SingleLiveEvent<Int>()
     val startLoadingDialogState = SingleLiveEvent<LoadingDialogType>()
+    val expireLoginState = SingleLiveEvent<Unit>()
 
     private var compositeDisposable = CompositeDisposable()
 
@@ -71,12 +73,15 @@ open class BaseViewModel : ViewModel() {
             var message: String = ""
             val error = it as HttpException
             val errorBody = error.response()?.errorBody()?.string()
-            if (!errorBody.toString().isNotEmpty()) {
+            if (errorBody.toString().isNotEmpty()) {
                 message = responseErrorBody(errorBody.toString())
             }
             dissmissDialog()
+
             // fail일 경우 콜백메소드에 에러메세지 넘김
-            fail.invoke(message)
+            if (message.isNotEmpty()) {
+                fail.invoke(message)
+            }
         })
         dissmissDialog()
         subscribe(observer)
@@ -84,9 +89,19 @@ open class BaseViewModel : ViewModel() {
     }
 
     fun responseErrorBody(error: String): String {
-        val jsonObject = JSONObject(error)
-        val errorBody = jsonObject.getJSONObject("error")
-        return errorBody.getString("message")
+        var message = "";
+        try {
+            val jsonObject = JSONObject(error)
+            if (jsonObject.has("error")) {
+                message = jsonObject.getString("error")
+            } else if (jsonObject.has("detail")) {
+                message = "";
+                expireLoginState.call()
+            }
+        } catch (e: JSONException) {
+
+        }
+        return message
     }
 
     fun showDialog() {
