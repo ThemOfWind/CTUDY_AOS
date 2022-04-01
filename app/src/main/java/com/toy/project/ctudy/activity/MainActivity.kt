@@ -7,11 +7,12 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.toy.project.ctudy.BR
 import com.toy.project.ctudy.R
 import com.toy.project.ctudy.adapter.MainRoomAdapter
-import com.toy.project.ctudy.common.CommonDefine.ROOM_ADD_REQUEST_CODE
+import com.toy.project.ctudy.common.CommonDefine.ROOM_REFRESH_REQUEST_CODE
 import com.toy.project.ctudy.databinding.ActivityMainBinding
 import com.toy.project.ctudy.extension.moveRoomAddActivity
 import com.toy.project.ctudy.extension.moveRoomDetailActivity
@@ -34,6 +35,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     private var mMainRoomAdapter: MainRoomAdapter? = null
     private var mRoomDetailClickListener: RoomClickListener? = null
     private var mRoomList = ArrayList<RoomAllResponseList>()
+
+    var mIsRefresh: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +61,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
          */
         with(viewModel) {
             mainRoomList.observe(this@MainActivity, { data ->
-                if (mRoomList.size != data.size && mMainRoomAdapter != null) {
+                if (mRoomList.size != data.size && mMainRoomAdapter != null || mIsRefresh) {
                     mMainRoomAdapter!!.setData(data)
                     viewBinding.roomRecyclerView.scrollToPosition(0)
                 } else {
@@ -69,6 +72,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                         setHasFixedSize(false)
                     }
                 }
+                mIsRefresh = false
                 mRoomList = data
             })
 
@@ -109,7 +113,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     fun activityForResult(): ActivityResultLauncher<Intent> {
         return registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == ROOM_ADD_REQUEST_CODE) {
+            if (result.resultCode == ROOM_REFRESH_REQUEST_CODE) {
+                mIsRefresh = true
                 viewModel.getStudyRoomList()
             }
         }
@@ -117,9 +122,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     fun roomClickListener(): RoomClickListener {
         return object : RoomClickListener {
-            override fun onRoomDetailClick(id: String) {
+            override fun onRoomDetailClick(id: String, master: String) {
                 id.let {
-                    moveRoomDetailActivity<RoomDetailActivity>(id, mResult)
+                    moveRoomDetailActivity<RoomDetailActivity>(id, master, mResult)
                 }
             }
         }

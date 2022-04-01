@@ -5,9 +5,6 @@ import com.toy.project.ctudy.repository.pref.UserPref
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
-import okhttp3.ResponseBody
-import okhttp3.logging.HttpLoggingInterceptor
-import java.net.URLDecoder
 import java.util.concurrent.TimeUnit
 
 /**
@@ -23,6 +20,7 @@ class ApplicationInterCeptor(userPref: UserPref) : Interceptor {
     private val ACCEPT_CONTENT_TYPE = "application/json; charset=UTF-8"
     private val AUTHORIZATION = "Authorization"
     private val mUserPref = userPref
+
     /**
      * Application -> Okhttp 사이 동작
      * 기본 Interceptor 구현
@@ -42,8 +40,11 @@ class ApplicationInterCeptor(userPref: UserPref) : Interceptor {
             method(origin.method, origin.body)
         }.build()
 
+        Log.d("로그 :: request URL ", request.url.toString())
+
         val response = chain.proceed(request)
 
+        Log.d("로그 :: response URL ", response.toString())
         return response
     }
 }

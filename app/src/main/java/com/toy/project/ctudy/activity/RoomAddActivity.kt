@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.toy.project.ctudy.BR
 import com.toy.project.ctudy.R
 import com.toy.project.ctudy.common.AlertDialogBtnType
-import com.toy.project.ctudy.common.CommonDefine.ROOM_ADD_REQUEST_CODE
+import com.toy.project.ctudy.common.CommonDefine.ROOM_REFRESH_REQUEST_CODE
 import com.toy.project.ctudy.databinding.ActivityRoomAddBinding
 import com.toy.project.ctudy.repository.etc.CommonDialogListener
 import com.toy.project.ctudy.view.HeaderView
@@ -37,7 +37,7 @@ class RoomAddActivity : BaseActivity<ActivityRoomAddBinding, RoomAddViewModel>()
                         .let {
                             it.dialogClick(object : CommonDialogListener {
                                 override fun onConfirm() {
-                                    setResult(ROOM_ADD_REQUEST_CODE)
+                                    setResult(ROOM_REFRESH_REQUEST_CODE)
                                     finish()
                                 }
 

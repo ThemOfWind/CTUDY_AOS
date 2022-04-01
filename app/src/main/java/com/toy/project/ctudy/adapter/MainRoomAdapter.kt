@@ -36,7 +36,8 @@ class MainRoomAdapter(
 
         holder.binding.mainStudyLayout.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                mRoomClickListener.onRoomDetailClick(mRoomList.get(position).id!!)
+                mRoomClickListener.onRoomDetailClick(mRoomList.get(position).id!!,
+                    mRoomList.get(position).master_name!!)
             }
         })
     }

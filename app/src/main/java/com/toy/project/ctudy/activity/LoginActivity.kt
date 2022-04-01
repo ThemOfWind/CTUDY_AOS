@@ -6,10 +6,8 @@ import com.toy.project.ctudy.BR
 import com.toy.project.ctudy.R
 import com.toy.project.ctudy.common.AlertDialogBtnType
 import com.toy.project.ctudy.databinding.ActivityLoginBinding
-import com.toy.project.ctudy.databinding.ActivityLoginBindingImpl
 import com.toy.project.ctudy.extension.singleStartActivity
 import com.toy.project.ctudy.extension.startMoveActivity
-import com.toy.project.ctudy.repository.etc.CommonDialogListener
 import com.toy.project.ctudy.viewmodel.LoginViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
