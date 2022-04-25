@@ -2,6 +2,7 @@ package com.toy.project.ctudy.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.toy.project.ctudy.repository.etc.RecyclerBottomView
 import com.toy.project.ctudy.repository.pref.UserPref
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -23,5 +24,9 @@ val prefModule = module {
     single {
         UserPref(get())
         // SharedPreference 타입으로 선언되어 있어 get() 으로 해당 객체를 주입 받는다
+    }
+
+    single {
+        RecyclerBottomView()
     }
 }

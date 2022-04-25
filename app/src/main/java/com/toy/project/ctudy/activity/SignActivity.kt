@@ -82,7 +82,6 @@ class SignActivity : BaseActivity<ActivitySignBinding, SignViewModel>() {
         }
         viewBinding.headerView.setInitHeader(
             HeaderView.HEADER_BACK,
-            this@SignActivity.resources.getString(R.string.sign_in_text),
             this@SignActivity
         )
     }

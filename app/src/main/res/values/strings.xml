@@ -36,14 +36,18 @@
 
     <!-- 스터디 룸 등록 -->
     <string name="enroll_study_room_title_text">스터디 룸 등록</string>
+    <string name="enroll_study_room_image_text">이미지 등록</string>
     <string name="enroll_study_room_name_text">스터디 이름</string>
     <string name="enroll_study_room_text">등록</string>
     <string name="enroll_study_room_success">스터디 룸 등록되었습니다.</string>
     <string name="enroll_study_room_fail">스터디 룸 등록에 실패하였습니다.</string>
+    <string name="enroll_study_room_next_text">다음</string>
 
     <!-- 스터디 룸 상세-->
     <string name="study_room_detail_delete_text">삭제</string>
     <string name="study_room_detail_modify_text">수정</string>
+    <string name="study_room_detail_coupon_publish">쿠폰 발행</string>
+    <string name="study_room_detail_my_coupon">내 쿠폰</string>
 
     <!-- 스터디 룸 수정 -->
     <string name="study_room_modify_title_text">스터디 룸 수정</string>

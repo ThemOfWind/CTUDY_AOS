@@ -19,8 +19,10 @@ import com.toy.project.ctudy.extension.moveRoomDetailActivity
 import com.toy.project.ctudy.extension.singleStartActivity
 import com.toy.project.ctudy.interfaces.RoomClickListener
 import com.toy.project.ctudy.model.response.RoomAllResponseList
+import com.toy.project.ctudy.repository.etc.RecyclerBottomView
 import com.toy.project.ctudy.view.HeaderView
 import com.toy.project.ctudy.viewmodel.MainViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -36,6 +38,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     private var mRoomDetailClickListener: RoomClickListener? = null
     private var mRoomList = ArrayList<RoomAllResponseList>()
 
+    private val mRecyclerBottomView: RecyclerBottomView by inject()
+
     var mIsRefresh: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,13 +52,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         viewBinding.mainLogoutFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
         viewBinding.mainAddFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
         viewBinding.mainMenuFab.imageTintList = ColorStateList.valueOf(Color.WHITE)
-
-        // 헤더 세팅
-        viewBinding.headerView.setInitHeader(
-            HeaderView.HEADER_BASIC,
-            this@MainActivity.resources.getString(R.string.app_name),
-            this@MainActivity
-        )
 
         /**
          * viewModel Observe 정의
@@ -70,6 +67,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                         layoutManager = LinearLayoutManager(context)
                         adapter = mMainRoomAdapter
                         setHasFixedSize(false)
+                        addItemDecoration(mRecyclerBottomView)
                     }
                 }
                 mIsRefresh = false

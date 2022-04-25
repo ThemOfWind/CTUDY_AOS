@@ -24,7 +24,6 @@ class RoomAddActivity : BaseActivity<ActivityRoomAddBinding, RoomAddViewModel>()
 
         viewBinding.headerView.setInitHeader(
             HeaderView.HEADER_BACK,
-            this@RoomAddActivity.resources.getString(R.string.enroll_study_room_title_text),
             this@RoomAddActivity
         )
 

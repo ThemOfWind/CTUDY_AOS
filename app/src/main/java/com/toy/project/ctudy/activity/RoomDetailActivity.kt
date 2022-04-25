@@ -77,7 +77,7 @@ class RoomDetailActivity : BaseActivity<ActivityRoomDetailBinding, RoomDetailVie
             })
         }
 
-        viewBinding.headerView.setInitHeader(HeaderView.HEADER_BACK, "", this)
+        viewBinding.headerView.setInitHeader(HeaderView.HEADER_BACK, this)
     }
 
     fun mModifyListener() = object : RoomModifyListener {

@@ -3,11 +3,12 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
 
-    <color name="main_bg_color">#1E90FF</color>
+    <color name="main_bg_color">#80C000</color>
     <color name="white_color">#1E90FF</color>
     <color name="basic_line_color">#F6F6F6F6</color>
     <color name="basic_hint_text_color">#EEEEEE</color>
     <color name="basic_hint_text_color2">#CCCCCC</color>
-    <color name="basic_sub_text_color">#666666</color>
+    <color name="basic_sub_text_color">#858c94</color>
     <color name="basic_red_color">#FF3300</color>
+    <color name="basic_box_line_color">#A6A8AA</color>
 </resources>
