@@ -36,14 +36,14 @@ interface ApiService {
     fun studyRoomDetail(@Path("id") id: String): Single<RoomDetailResponse>
 
     // 스터디룸 수정
-    @PUT(HttpDefine.CTUDY_API + "/study/room/{id}")
+    @PUT(HttpDefine.CTUDY_API + "/study/room/{id}/")
     fun studyRoomModify(
         @Body modifyData: RoomModifyData,
         @Path("id") id: String,
     ): Single<ReturnResultResponse>
 
     // 스터디룸 삭제
-    @DELETE(HttpDefine.CTUDY_API + "/study/room/{id}")
+    @DELETE(HttpDefine.CTUDY_API + "/study/room/{id}/")
     fun studyRoomDelete(
         @Path("id") id: String,
     ): Single<ReturnResultResponse>

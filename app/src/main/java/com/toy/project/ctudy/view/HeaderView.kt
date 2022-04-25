@@ -63,12 +63,11 @@ class HeaderView : LinearLayout {
     }
 
     // 헤더 타입에 따라 Visible 처리
-    fun setInitHeader(type: String, title: String, activity: Activity) {
+    fun setInitHeader(type: String, activity: Activity) {
         when (type) {
             HEADER_BASIC -> mHeaderBack?.isVisible = false
             HEADER_BACK -> mHeaderBack?.isVisible = true
         }
-        mHeaderTitle?.text = title
         mBackActivity = activity
     }
 }

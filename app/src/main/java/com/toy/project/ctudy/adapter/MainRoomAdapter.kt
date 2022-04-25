@@ -1,13 +1,16 @@
 package com.toy.project.ctudy.adapter
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.toy.project.ctudy.R
 import com.toy.project.ctudy.databinding.MainRoomItemBinding
+import com.toy.project.ctudy.extension.CommonFunction
 import com.toy.project.ctudy.interfaces.RoomClickListener
 import com.toy.project.ctudy.model.response.RoomAllResponseList
 
@@ -40,6 +43,12 @@ class MainRoomAdapter(
                     mRoomList.get(position).master_name!!)
             }
         })
+
+        // TODO 테스트 이미지 데이터
+        CommonFunction.setRoundImageView(mContext,
+            "https://cdn.emetro.co.kr/data2/content/image/2020/01/23/0540/20200123000058.jpg",
+            holder.binding.mainStudyImg)
+
     }
 
     override fun getItemCount(): Int {

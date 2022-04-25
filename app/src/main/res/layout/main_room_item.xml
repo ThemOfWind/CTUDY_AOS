@@ -13,14 +13,15 @@
         android:id="@+id/main_study_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/main_list_box"
         android:fitsSystemWindows="true">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/main_study_img"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
+            android:layout_margin="@dimen/dp_size_1"
             android:scaleType="fitXY"
-            android:src="@drawable/study_img"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +30,7 @@
             android:id="@+id/main_img_line"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_size_1"
-            android:background="@color/basic_line_color"
+            android:background="@color/basic_box_line_color"
             app:layout_constraintTop_toBottomOf="@+id/main_study_img" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -50,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{item.name}"
-                android:textColor="@color/black"
+                android:textColor="@color/main_bg_color"
                 android:textSize="@dimen/text_size_17"
                 android:textStyle="bold" />
 
@@ -61,14 +62,9 @@
                 android:layout_marginTop="@dimen/dp_size_3"
                 android:layout_marginBottom="@dimen/dp_size_20"
                 android:text="@{item.master_name}"
-                android:textColor="@color/basic_sub_text_color"
+                android:textColor="@color/main_bg_color"
                 android:textSize="@dimen/text_size_15" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_size_2"
-            android:background="@color/basic_line_color"
-            app:layout_constraintTop_toBottomOf="@+id/main_study_text_layout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
