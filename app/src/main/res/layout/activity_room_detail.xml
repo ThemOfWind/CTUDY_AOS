@@ -15,13 +15,32 @@
         android:layout_height="match_parent"
         tools:context=".activity.RoomDetailActivity">
 
-        <com.toy.project.ctudy.view.HeaderView
-            android:id="@+id/header_view"
+        <RelativeLayout
+            android:id="@+id/header_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.toy.project.ctudy.view.HeaderView
+                android:id="@+id/header_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/setting_icon"
+                android:layout_width="@dimen/dp_size_20"
+                android:layout_height="@dimen/dp_size_20"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_size_10"
+                android:src="@drawable/setting_icon" />
+        </RelativeLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,7 +49,7 @@
             android:layout_marginRight="@dimen/dp_size_20"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header_view">
+            app:layout_constraintTop_toBottomOf="@+id/header_layout">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/room_detail_text"
@@ -81,6 +100,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/room_detail_master_name" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/room_detail_coupon_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_size_20"
@@ -90,6 +110,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/room_detail_master_id">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/room_deatil_coupon_publish"
                     android:layout_width="@dimen/dp_size_0"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -100,13 +121,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp_size_5"
-                        android:text="쿠폰 발행"
+                        android:text="@string/study_room_detail_coupon_publish"
                         android:textAlignment="center"
                         android:textColor="@color/main_bg_color"
                         android:textSize="@dimen/text_size_17" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/room_detail_my_coupon"
                     android:layout_width="@dimen/dp_size_0"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_size_10"
@@ -118,12 +140,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dp_size_5"
-                        android:text="내 쿠폰"
+                        android:text="@string/study_room_detail_my_coupon"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_size_17" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/room_detail_member_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_size_20"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/room_detail_coupon_layout" />
             <!-- 기존화면 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
