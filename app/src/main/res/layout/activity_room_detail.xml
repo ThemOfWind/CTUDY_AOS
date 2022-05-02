@@ -34,8 +34,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/setting_icon"
-                android:layout_width="@dimen/dp_size_25"
-                android:layout_height="@dimen/dp_size_25"
+                android:layout_width="@dimen/dp_size_20"
+                android:layout_height="@dimen/dp_size_20"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_size_10"
@@ -155,6 +155,58 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/room_detail_coupon_layout" />
+            <!-- 기존화면 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/room_detail_text">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/room_detail_modify_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_bg_color"
+                    android:gravity="center"
+                    android:onClick="@{()->viewModel.showModifyDialog()}"
+                    app:layout_constraintEnd_toStartOf="@+id/room_detail_delete_layout"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_size_15"
+                        android:text="@string/study_room_detail_modify_text"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_17" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/room_detail_delete_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/basic_hint_text_color2"
+                    android:gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/room_detail_modify_layout"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_size_15"
+                        android:text="@string/study_room_detail_delete_text"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_17" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
