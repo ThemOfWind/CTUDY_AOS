@@ -1,6 +1,8 @@
 package com.toy.project.ctudy.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.toy.project.ctudy.common.SingleLiveEvent
 import com.toy.project.ctudy.repository.network.ApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -60,5 +62,16 @@ class RoomDetailViewModel(
 
                 }))
 
+    }
+
+
+    fun viewModelFactory(): ViewModelProvider.Factory {
+        return RoomDetailViewFactory(apiService)
+    }
+
+    class RoomDetailViewFactory(private val apiService: ApiService) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return RoomDetailViewModel(apiService) as T
+        }
     }
 }

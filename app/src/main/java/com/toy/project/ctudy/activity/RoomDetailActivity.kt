@@ -3,6 +3,7 @@ package com.toy.project.ctudy.activity
 import android.os.Bundle
 import android.view.View
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.toy.project.ctudy.BR
 import com.toy.project.ctudy.R
 import com.toy.project.ctudy.common.AlertDialogBtnType
@@ -14,6 +15,7 @@ import com.toy.project.ctudy.interfaces.RoomModifyListener
 import com.toy.project.ctudy.repository.etc.CommonDialogListener
 import com.toy.project.ctudy.view.HeaderView
 import com.toy.project.ctudy.view.RoomModifyDialog
+import com.toy.project.ctudy.view.SettingBottomDialog
 import com.toy.project.ctudy.viewmodel.RoomDetailViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -28,6 +30,8 @@ class RoomDetailActivity : BaseActivity<ActivityRoomDetailBinding, RoomDetailVie
     lateinit var mRoomModifyDialog: RoomModifyDialog
     lateinit var bottomSheetDialog: BottomSheetDialog
 
+    lateinit var bottomSheetDialogFragment: BottomSheetDialogFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,52 +39,17 @@ class RoomDetailActivity : BaseActivity<ActivityRoomDetailBinding, RoomDetailVie
         mRoomMaster = intent.getStringExtra(ROOM_DETAIL_MASTER)!!
         mRoomModifyDialog = RoomModifyDialog(mRoomId, mRoomMaster, mModifyListener())
 
-        val bottomSheetView = layoutInflater.inflate(R.layout.setting_bottom_dialog, null)
-        bottomSheetDialog = BottomSheetDialog(this)
-        bottomSheetDialog.setContentView(bottomSheetView)
+        bottomSheetDialogFragment =
+            SettingBottomDialog(viewModelFactory = viewModel.viewModelFactory(),
+                this,
+                mRoomId,
+                mRoomModifyDialog)
 
         with(viewModel) {
             id = mRoomId
+
             // 상세 룸정보 호출
             getRoomDetail()
-
-            doModify.observe(this@RoomDetailActivity, {
-                mRoomModifyDialog.show(supportFragmentManager, "ModifyDialog")
-            })
-
-            doDelete.observe(this@RoomDetailActivity, {
-                showCommonDialog(AlertDialogBtnType.ONE,
-                    this@RoomDetailActivity.resources.getString(R.string.study_room_delete_success)
-                ).apply {
-                    dialogClick(object : CommonDialogListener {
-                        override fun onConfirm() {
-                            BackToRefreshRoomInfo()
-                        }
-
-                        override fun onCancle() {
-                            dismiss()
-                        }
-                    })
-                }
-            })
-//            viewBinding.roomDetailDeleteLayout.setOnClickListener(object : View.OnClickListener {
-//                override fun onClick(p0: View?) {
-//                    showCommonDialog(AlertDialogBtnType.ONE,
-//                        this@RoomDetailActivity.resources.getString(R.string.study_room_delete)
-//                    ).apply {
-//                        dialogClick(object : CommonDialogListener {
-//                            override fun onConfirm() {
-//                                roomDelete()
-//                            }
-//
-//                            override fun onCancle() {
-//                                dismiss()
-//                            }
-//                        })
-//                    }
-//
-//                }
-//            })
         }
 
         viewBinding.headerView.setInitHeader(HeaderView.HEADER_BACK, this)
@@ -124,8 +93,8 @@ class RoomDetailActivity : BaseActivity<ActivityRoomDetailBinding, RoomDetailVie
     override fun onClick(view: View?) {
         when (view?.id) {
             viewBinding.settingIcon.id ->
-                if (!bottomSheetDialog.isShowing) {
-                    bottomSheetDialog.show()
+                if (!bottomSheetDialogFragment.isVisible) {
+                    bottomSheetDialogFragment.show(supportFragmentManager, "Setting Menu")
                 }
         }
     }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <data>
 
@@ -8,35 +10,45 @@
             type="com.toy.project.ctudy.viewmodel.RoomDetailViewModel" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_size_15"
-            android:onClick="@{()->viewmodel.showModifyDialog()}"
-            android:text="@string/study_room_detail_modify_text"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_15" />
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_size_1"
-            android:layout_marginLeft="@dimen/dp_size_5"
-            android:layout_marginRight="@dimen/dp_size_5"
-            android:background="@color/basic_box_line_color" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rood_detail_modify_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_size_15"
+                android:onClick="@{()->viewmodel.showModifyDialog()}"
+                android:text="@string/study_room_detail_modify_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_15" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_size_15"
-            android:onClick="@{()->viewmodel.roomDelete()}"
-            android:text="@string/study_room_detail_delete_text"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_15" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_size_1"
+                android:layout_marginLeft="@dimen/dp_size_5"
+                android:layout_marginRight="@dimen/dp_size_5"
+                android:background="@color/basic_box_line_color" />
 
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/rood_detail_delete_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_size_15"
+                android:text="@string/study_room_detail_delete_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_15" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
