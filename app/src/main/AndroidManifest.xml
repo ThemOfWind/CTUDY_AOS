@@ -16,6 +16,9 @@
         android:theme="@style/Theme.CTUDY"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.MemberEnrollActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.RoomDetailActivity"
             android:exported="false" />
         <activity
