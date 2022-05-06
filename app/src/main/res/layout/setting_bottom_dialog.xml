@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.toy.project.ctudy.viewmodel.RoomDetailViewModel" />
+            type="com.toy.project.ctudy.viewmodel.SettingBottomViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -32,19 +32,19 @@ interface ApiService {
     fun studyAllRoomInquiry(): Single<RoomAllResponse>
 
     // 스터디룸 상세 조회
-    @GET(HttpDefine.CTUDY_API + "/study/room/{id}")
-    fun studyRoomDetail(@Path("id") id: String): Single<RoomDetailResponse>
+    @GET(HttpDefine.CTUDY_API + "/study/room/{room_id}")
+    fun studyRoomDetail(@Path("room_id") id: String): Single<RoomDetailResponse>
 
     // 스터디룸 수정
-    @PUT(HttpDefine.CTUDY_API + "/study/room/{id}/")
+    @PUT(HttpDefine.CTUDY_API + "/study/room/{room_id}/")
     fun studyRoomModify(
         @Body modifyData: RoomModifyData,
-        @Path("id") id: String,
+        @Path("room_id") id: String,
     ): Single<ReturnResultResponse>
 
     // 스터디룸 삭제
-    @DELETE(HttpDefine.CTUDY_API + "/study/room/{id}/")
+    @DELETE(HttpDefine.CTUDY_API + "/study/room/{room_id}")
     fun studyRoomDelete(
-        @Path("id") id: String,
+        @Path("room_id") id: String,
     ): Single<ReturnResultResponse>
 }

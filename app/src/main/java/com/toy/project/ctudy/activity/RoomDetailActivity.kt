@@ -40,10 +40,10 @@ class RoomDetailActivity : BaseActivity<ActivityRoomDetailBinding, RoomDetailVie
         mRoomModifyDialog = RoomModifyDialog(mRoomId, mRoomMaster, mModifyListener())
 
         bottomSheetDialogFragment =
-            SettingBottomDialog(viewModelFactory = viewModel.viewModelFactory(),
+            SettingBottomDialog(
                 this,
                 mRoomId,
-                mRoomModifyDialog)
+                mRoomModifyDialog, supportFragmentManager)
 
         with(viewModel) {
             id = mRoomId

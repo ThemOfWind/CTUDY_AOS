@@ -76,12 +76,11 @@ open class BaseViewModel : ViewModel() {
             if (errorBody.toString().isNotEmpty()) {
                 message = responseErrorBody(errorBody.toString())
             }
+
             dissmissDialog()
 
             // fail일 경우 콜백메소드에 에러메세지 넘김
-            if (message.isNotEmpty()) {
-                fail.invoke(message)
-            }
+            fail.invoke(message)
         })
         dissmissDialog()
         subscribe(observer)
@@ -93,7 +92,10 @@ open class BaseViewModel : ViewModel() {
         try {
             val jsonObject = JSONObject(error)
             if (jsonObject.has("error")) {
-                message = jsonObject.getString("error")
+                val errorJsonObject = JSONObject(jsonObject.getString("error"))
+                if(errorJsonObject.has("message")){
+                    message = errorJsonObject.getString("message")
+                }
             } else if (jsonObject.has("detail")) {
                 message = "";
                 expireLoginState.call()

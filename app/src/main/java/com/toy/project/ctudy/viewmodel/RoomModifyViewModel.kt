@@ -1,6 +1,7 @@
 package com.toy.project.ctudy.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.toy.project.ctudy.common.ResponseType
 import com.toy.project.ctudy.common.SingleLiveEvent
 import com.toy.project.ctudy.model.RoomModifyData
 import com.toy.project.ctudy.repository.etc.CommonDialogManager
@@ -19,7 +20,7 @@ class RoomModifyViewModel(
     val master = MutableLiveData<String>()
     val id = MutableLiveData<String>()
 
-    val successModify = SingleLiveEvent<Unit>()
+    val successModify = SingleLiveEvent<ResponseType>()
     val isNameEmpty = SingleLiveEvent<Boolean>()
 
     /**
@@ -28,18 +29,19 @@ class RoomModifyViewModel(
     fun roomModify() {
         if (!isNameEmpty()) {
             addDisposable(
-                apiService.studyRoomModify(modifyData = RoomModifyData(name.value.toString(),
-                    ""),
+                apiService.studyRoomModify(modifyData = RoomModifyData(
+                    name.value.toString(),
+                ),
                     id = id.value.toString())
                     .startLoading()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeDone({
                         if (it.result) {
-                            successModify.call()
+                            successModify.postValue(ResponseType.SUCCESS)
                         }
                     }, {
-
+                        successModify.postValue(ResponseType.FAIL)
                     }))
         } else {
             isNameEmpty.postValue(true)

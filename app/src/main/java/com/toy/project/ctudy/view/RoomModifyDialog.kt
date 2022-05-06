@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.toy.project.ctudy.R
+import com.toy.project.ctudy.common.ResponseType
 import com.toy.project.ctudy.databinding.RoomModifyDialogBinding
 import com.toy.project.ctudy.interfaces.RoomModifyListener
 import com.toy.project.ctudy.viewmodel.RoomModifyViewModel
@@ -45,9 +46,15 @@ class RoomModifyDialog(id: String, master: String, modifyListener: RoomModifyLis
             master.value = mMaster
 
             // 수정 완료
-            successModify.observe(this@RoomModifyDialog, {
-                dismiss()
-                mModifyListener.doneModify()
+            successModify.observe(this@RoomModifyDialog, { response ->
+                if(response.equals(ResponseType.SUCCESS)){
+                    dismiss()
+                    mModifyListener.doneModify()
+                }else{
+                    Toast.makeText(context,
+                        this@RoomModifyDialog.resources.getString(R.string.network_etc_error),
+                        Toast.LENGTH_SHORT).show()
+                }
             })
 
             isNameEmpty.observe(this@RoomModifyDialog, { result ->

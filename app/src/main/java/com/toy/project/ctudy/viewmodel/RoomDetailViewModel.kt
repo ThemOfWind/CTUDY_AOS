@@ -3,6 +3,7 @@ package com.toy.project.ctudy.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.toy.project.ctudy.common.ResponseType
 import com.toy.project.ctudy.common.SingleLiveEvent
 import com.toy.project.ctudy.repository.network.ApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,11 +15,7 @@ class RoomDetailViewModel(
 
     var id: String = ""
 
-
     val resultName = MutableLiveData<String>()
-
-    val doModify = SingleLiveEvent<Unit>()
-    val doDelete = SingleLiveEvent<Unit>()
 
     /**
      * 스터디 룸 상세 api
@@ -37,33 +34,6 @@ class RoomDetailViewModel(
 
                 }))
     }
-
-    /**
-     * 스터디 룸 수정 팝업 노출
-     */
-    fun showModifyDialog() {
-        doModify.call()
-    }
-
-    /**
-     * 스터디 룸 삭제
-     */
-    fun roomDelete() {
-        addDisposable(
-            apiService.studyRoomDelete(id = id)
-                .startLoading()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeDone({
-                    if (it.result) {
-                        doDelete.call()
-                    }
-                }, {
-
-                }))
-
-    }
-
 
     fun viewModelFactory(): ViewModelProvider.Factory {
         return RoomDetailViewFactory(apiService)
