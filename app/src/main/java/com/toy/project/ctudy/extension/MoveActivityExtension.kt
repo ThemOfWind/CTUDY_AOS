@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import com.toy.project.ctudy.R
+import com.toy.project.ctudy.common.CommonDefine.ROOM_ADD_NAME
 import com.toy.project.ctudy.common.CommonDefine.ROOM_DETAIL_ID
 import com.toy.project.ctudy.common.CommonDefine.ROOM_DETAIL_MASTER
 
@@ -44,5 +45,16 @@ inline fun <reified T : Activity> Activity.moveRoomDetailActivity(
     intent.putExtra(ROOM_DETAIL_ID, id)
     intent.putExtra(ROOM_DETAIL_MASTER, master)
     result.launch(intent)
+    overridePendingTransition(R.anim.in_right_to_left, R.anim.in_right_to_left)
+}
+
+
+inline fun <reified T : Activity> Activity.moveMemeberEnrollActivity(
+    name: String,
+    result: ActivityResultLauncher<Intent>,
+) {
+    val intent = Intent(this, T::class.java)
+    intent.putExtra(ROOM_ADD_NAME, name)
+    startActivity(intent)
     overridePendingTransition(R.anim.in_right_to_left, R.anim.in_right_to_left)
 }

@@ -47,4 +47,11 @@ interface ApiService {
     fun studyRoomDelete(
         @Path("room_id") id: String,
     ): Single<ReturnResultResponse>
+
+    // 멤버 리스트 조회
+    @GET(HttpDefine.CTUDY_API + "/study/room/member/")
+    fun studyMemberList(
+        @Query("page") page: Int,
+        @Query("max_page") max_page: Int,
+    ): Single<MemberListResponse>
 }

@@ -1,6 +1,7 @@
 package com.toy.project.ctudy.activity
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -112,6 +113,10 @@ abstract class BaseActivity<DataBinding : ViewDataBinding, R : BaseViewModel> : 
             setContentMsg(msg)
             show()
         }
+    }
+
+    protected fun showToastMessage(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     protected fun expireLogin() {
