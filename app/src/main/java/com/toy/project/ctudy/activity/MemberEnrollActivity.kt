@@ -11,6 +11,7 @@ import com.toy.project.ctudy.databinding.ActivityMemberEnrollBinding
 import com.toy.project.ctudy.model.response.MemberList
 import com.toy.project.ctudy.repository.etc.CommonDialogListener
 import com.toy.project.ctudy.repository.etc.RecyclerBottomView
+import com.toy.project.ctudy.view.HeaderView
 import com.toy.project.ctudy.viewmodel.MemberEnrollViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,6 +35,11 @@ class MemberEnrollActivity : BaseActivity<ActivityMemberEnrollBinding, MemberEnr
         super.onCreate(savedInstanceState)
 
         mRoomName = intent.getStringExtra(CommonDefine.ROOM_ADD_NAME)!!
+
+        viewBinding.headerView.setInitHeader(
+            HeaderView.HEADER_BACK,
+            this@MemberEnrollActivity
+        )
 
         with(viewModel) {
             roomName = mRoomName

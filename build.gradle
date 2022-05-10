@@ -34,6 +34,9 @@ buildscript {
 
         // Meterial
         meterial_version = '1.4.0'
+
+        // Room DB
+        room_version = '2.2.5'
     }
     repositories {
         google()

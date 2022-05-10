@@ -1,6 +1,7 @@
 package com.toy.project.ctudy.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.toy.project.ctudy.common.CommonDefine
 import com.toy.project.ctudy.common.LoadingDialogType
 import com.toy.project.ctudy.common.NetWorkDialogType
 import com.toy.project.ctudy.common.SingleLiveEvent
@@ -67,14 +68,23 @@ open class BaseViewModel : ViewModel() {
             }
             dissmissDialog()
             success.invoke(response)
-        }, {
+        }, { response ->
             // 현재 response success가 아닐 경우
             // 200 이외의 코드가 떨어져 이 경우 json body 생성 및 가공한다
+
             var message: String = ""
-            val error = it as HttpException
+            val error = response as HttpException
             val errorBody = error.response()?.errorBody()?.string()
             if (errorBody.toString().isNotEmpty()) {
                 message = responseErrorBody(errorBody.toString())
+            }
+
+            if (error.code().equals(CommonDefine.ERROR_UNAUTHORIZED)) {
+                // 토큰 만료
+                networkAlertDialogState.postValue(NetWorkDialogType.EXPIRE_LOGIN.msg)
+            } else {
+                // 기타 에러
+                networkAlertDialogState.postValue(NetWorkDialogType.ETC_ERROR.msg)
             }
 
             dissmissDialog()
@@ -93,7 +103,7 @@ open class BaseViewModel : ViewModel() {
             val jsonObject = JSONObject(error)
             if (jsonObject.has("error")) {
                 val errorJsonObject = JSONObject(jsonObject.getString("error"))
-                if(errorJsonObject.has("message")){
+                if (errorJsonObject.has("message")) {
                     message = errorJsonObject.getString("message")
                 }
             } else if (jsonObject.has("detail")) {

@@ -25,6 +25,7 @@ enum class LoadingDialogType {
 enum class NetWorkDialogType(@StringRes val msg: Int) {
     NETWORK_ERROR(msg = R.string.network_error),
     ETC_ERROR(msg = R.string.network_etc_error),
+    EXPIRE_LOGIN(msg = R.string.expire_login)
 }
 
 enum class AlertDialogBtnType {

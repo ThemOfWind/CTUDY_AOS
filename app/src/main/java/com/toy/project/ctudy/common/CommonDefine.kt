@@ -4,6 +4,11 @@ package com.toy.project.ctudy.common
  * 공통 정적 타입 변수 선언
  */
 object CommonDefine {
+    // response error code
+    val ERROR_BAD_REQUEST = 400
+    val ERROR_UNAUTHORIZED = 401
+    val ERROR_NOT_FOUND = 404
+
     // requestCode 지정
     val ROOM_REFRESH_REQUEST_CODE = 400
     val ROOM_ADD_COMPLETE_CODE = 401

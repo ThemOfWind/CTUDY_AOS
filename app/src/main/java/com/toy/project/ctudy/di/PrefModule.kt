@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.toy.project.ctudy.repository.etc.RecyclerBottomView
 import com.toy.project.ctudy.repository.pref.UserPref
+import com.toy.project.ctudy.repository.room.MemberDatabase
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
